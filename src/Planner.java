@@ -58,7 +58,7 @@ public class Planner {
         Planner planner = new Planner(10);
         planner.addDay(d1);
         planner.addDay(d2);
-//        System.out.println(planner);
+        System.out.println(planner);
         int x = 2;
         Day[] a = new Day[x];
         a = planner.showCalendar(x);

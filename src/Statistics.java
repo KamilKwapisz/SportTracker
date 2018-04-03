@@ -26,11 +26,11 @@ public class Statistics {
         return repsNumber;
     }
 
-    public String getTrainingsNumber() {
+    public int getTrainingsNumber() {
         return trainingsNumber;
     }
 
-    public int getSport() {
+    public String getSport() {
         return sport;
     }
 
