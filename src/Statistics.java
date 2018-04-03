@@ -57,13 +57,13 @@ public class Statistics {
     }
 
     @Override
-    public string toString(){
+    public String toString(){
         StringBuilder sb = new StringBuilder();
         sb.append(this.sport)
                 .append("(").append(this.trainingsNumber).append("):")
                 .append("time= ").append(this.totalTime).append("s, ")
                 .append("distance = ").append(this.totalDistance).append("m, ")
-                .append("reps = ").append(this.repsNumber)
+                .append("reps = ").append(this.repsNumber);
         return sb.toString();
     }
 
