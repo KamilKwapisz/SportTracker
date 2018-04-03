@@ -54,7 +54,7 @@ public class UserInfo {
         else
             sb.append("it ");
         sb.append("weights ").append(this.weight).append(" kilos and is ").append(this.height)
-                .append(" cm high. His BMI is: ").append(getBMI());
+                .append(" cm high. BMI=").append(getBMI());
         return sb.toString();
     }
 
