@@ -52,18 +52,4 @@ public class Planner {
         return sb.toString();
     }
 
-    public static void main(String[] args) {
-        Day d1 = new Day("31.08.2018", 1);
-        Day d2 = new Day("30.08.2018", 2);
-        Planner planner = new Planner(10);
-        planner.addDay(d1);
-        planner.addDay(d2);
-        System.out.println(planner);
-        int x = 2;
-        Day[] a = new Day[x];
-        a = planner.showCalendar(x);
-        for (int i = 0; i < x; i++)
-            System.out.println(a[i]);
-
-    }
 }
