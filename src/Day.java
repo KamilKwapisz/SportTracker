@@ -24,9 +24,6 @@ public class Day {
         this.training = training;
     }
 
-    public void removeTraining(){
-        this.training = 0; // tymczasowo
-    }
 
     @Override
     public String toString() {
