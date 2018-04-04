@@ -19,12 +19,15 @@ public class SQLCommunication {
             SQLCommunication serv = new SQLCommunication();
             String[][] result = serv.getFromTable("users", "name", "surname");
             printStringMatrix(result);
+            
         } catch (ClassNotFoundException | SQLException ex) {
+            System.out.println("SQLCommunication error: " + ex.getMessage());
+        } catch (IOException ex){
             System.out.println("SQLCommunication error: " + ex.getMessage());
         }
     }
 
-    public SQLCommunication() throws ClassNotFoundException, SQLException {
+    public SQLCommunication() throws ClassNotFoundException, SQLException, IOException {
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
         readConfigurationFile("SQLConfig.txt");
         con = DriverManager.getConnection(connectionUrl, user, password);
@@ -124,41 +127,35 @@ public class SQLCommunication {
         }
     }
 
-    private static void readConfigurationFile(String path) {
-        try {
-            FileReader fr = new FileReader(new File(path));
-            BufferedReader br = new BufferedReader(fr);
-            String line;
-            int lines = 0;
-            while ((line = br.readLine()) != null) {
-                if (lines++ == 4) {
-                    break;
-                }
-                String[] p = line.split("\\s+");
-                try {
-                    switch (p[0]) {
-                        case "user":
-                            user = p[1];
-                            break;
-                        case "password":
-                            password = p[1];
-                            break;
-                        case "ip":
-                            address = p[1];
-                            break;
-                        case "port":
-                            port = p[1];
-                            break;
-                        default:
-                            System.out.println("SQLCommunication error at readConfigurationFile: Can't recognise the parameter from SQLConfigurationFile: " + p[0]);
-                    }
-                } catch (ArrayIndexOutOfBoundsException ex) {
-                    System.out.println("SQLCommunication error at readConfigurationFile:");
-                }
+    private static void readConfigurationFile(String path) throws IOException {
+        FileReader fr = new FileReader(new File(path));
+        BufferedReader br = new BufferedReader(fr);
+        String line;
+        int lines = 0;
+        while ((line = br.readLine()) != null) {
+            if (lines++ == 4) {
+                break;
             }
-            connectionUrl = "jdbc:sqlserver://" + address + ":" + port + ";integrateSecurity=true";
-        } catch (IOException ex) {
-            System.out.println("SQLCommunication error at readConFile: " + ex.getMessage());
+            String[] p = line.split("\\s+");
+
+            switch (p[0]) {
+                case "user":
+                    user = p[1];
+                    break;
+                case "password":
+                    password = p[1];
+                    break;
+                case "ip":
+                    address = p[1];
+                    break;
+                case "port":
+                    port = p[1];
+                    break;
+                default:
+                    throw new IOException("Unrecognizable parameter '" + p[0] + "' in file" + path);
+            }
         }
+        connectionUrl = "jdbc:sqlserver://" + address + ":" + port + ";integrateSecurity=true";
     }
+
 }
