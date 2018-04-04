@@ -1,10 +1,10 @@
 public class Day {
 
     private String date;
-    private int training;
+    private Training training;
 
-    public Day(String dateString, int trainingNumber) {
-        this.training = trainingNumber;
+    public Day(String dateString, Training training) {
+        this.training = training;
         this.date = dateString;
     }
 
@@ -16,11 +16,11 @@ public class Day {
         this.date = this.date = dateString;
     }
 
-    public int getTraining() {
+    public Training getTraining() {
         return training;
     }
 
-    public void setTraining(int training) {
+    public void setTraining(Training training) {
         this.training = training;
     }
 

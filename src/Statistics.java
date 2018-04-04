@@ -4,14 +4,28 @@ public class Statistics {
     private double totalDistance; // total distance from running and cycling in meters;
     private int repsNumber; // number of repetitions from all trainings
     private String sport; // sport type
-    private int trainingsNumber;
+    private Training training;
+    private DistanceTraining distanceTraining;
 
     public Statistics(String sportName){
         this.totalDistance = 0.0;
         this.totalTime = 0.0;
         this.repsNumber = 0;
         this.sport = sportName;
-        this.trainingsNumber = 0;
+    }
+
+    public Statistics(Training training){
+        this.totalDistance = 0.0;
+        this.totalTime = training.getTime();
+        this.repsNumber = 0;
+        this.training = training;
+    }
+
+    public Statistics(DistanceTraining distanceTraining){
+        this.totalDistance = distanceTraining.getDistance();
+        this.totalTime = 0.0;
+        this.repsNumber = 0;
+        this.distanceTraining = DistanceTraining;
     }
 
     public double getTotalTime() {
@@ -26,8 +40,12 @@ public class Statistics {
         return repsNumber;
     }
 
-    public int getTrainingsNumber() {
-        return trainingsNumber;
+    public int getTraining() {
+        return training;
+    }
+
+    public int getDistanceTraining() {
+        return distanceTraining;
     }
 
     public String getSport() {
@@ -47,9 +65,6 @@ public class Statistics {
         this.repsNumber += repetitions;
     }
 
-    public void addTraining(){
-        this.trainingsNumber += 1;
-    }
 
     public double calculateAvgSpeed(){
         double speed = this.totalDistance / this.totalTime;
@@ -60,7 +75,7 @@ public class Statistics {
     public String toString(){
         StringBuilder sb = new StringBuilder();
         sb.append(this.sport)
-                .append("(").append(this.trainingsNumber).append("):")
+                .append("(").append(this.training).append("):")
                 .append("time= ").append(this.totalTime).append("s, ")
                 .append("distance = ").append(this.totalDistance).append("m, ")
                 .append("reps = ").append(this.repsNumber);
