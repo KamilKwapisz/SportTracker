@@ -105,7 +105,17 @@ public class GUI extends javax.swing.JFrame {
         );
 
         Display.setPreferredSize(new java.awt.Dimension(625, 500));
-        Display.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        javax.swing.GroupLayout DisplayLayout = new javax.swing.GroupLayout(Display);
+        Display.setLayout(DisplayLayout);
+        DisplayLayout.setHorizontalGroup(
+            DisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 625, Short.MAX_VALUE)
+        );
+        DisplayLayout.setVerticalGroup(
+            DisplayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 502, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -123,9 +133,7 @@ public class GUI extends javax.swing.JFrame {
                 .addComponent(Top, 98, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, 0)
-                        .addComponent(Display, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(Display, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE)))
         );
 
         Display.getAccessibleContext().setAccessibleName("");
