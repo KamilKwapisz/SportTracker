@@ -105,7 +105,7 @@ public class GUI extends javax.swing.JFrame {
         );
 
         Display.setPreferredSize(new java.awt.Dimension(625, 500));
-        Display.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+//        Display.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
