@@ -4,28 +4,12 @@ public class Statistics {
     private double totalDistance; // total distance from running and cycling in meters;
     private int repsNumber; // number of repetitions from all trainings
     private String sport; // sport type
-    private Training training;
-    private DistanceTraining distanceTraining;
 
     public Statistics(String sportName){
         this.totalDistance = 0.0;
         this.totalTime = 0.0;
         this.repsNumber = 0;
         this.sport = sportName;
-    }
-
-    public Statistics(Training training){
-        this.totalDistance = 0.0;
-        this.totalTime = training.getTime();
-        this.repsNumber = 0;
-        this.training = training;
-    }
-
-    public Statistics(DistanceTraining distanceTraining){
-        this.totalDistance = distanceTraining.getDistance();
-        this.totalTime = 0.0;
-        this.repsNumber = 0;
-        this.distanceTraining = DistanceTraining;
     }
 
     public double getTotalTime() {
@@ -38,14 +22,6 @@ public class Statistics {
 
     public int getRepsNumber() {
         return repsNumber;
-    }
-
-    public int getTraining() {
-        return training;
-    }
-
-    public int getDistanceTraining() {
-        return distanceTraining;
     }
 
     public String getSport() {
@@ -75,7 +51,6 @@ public class Statistics {
     public String toString(){
         StringBuilder sb = new StringBuilder();
         sb.append(this.sport)
-                .append("(").append(this.training).append("):")
                 .append("time= ").append(this.totalTime).append("s, ")
                 .append("distance = ").append(this.totalDistance).append("m, ")
                 .append("reps = ").append(this.repsNumber);
