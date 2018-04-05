@@ -13,6 +13,11 @@ public class MainScreenController {
 
 	@FXML
 	public void initialize() {
+		loadMenu();
+		
+	}
+
+	public void loadMenu() {
 		FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/Menu.fxml"));
 		Pane pane = null;
 		try {
@@ -20,6 +25,13 @@ public class MainScreenController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		setScene(pane);
+		MenuController menuController = loader.getController();
+		menuController.setMainScreenController(this);
+	}
+
+	public void setScene(Pane pane) {
+		mainScreen.getChildren().clear();
 		mainScreen.getChildren().add(pane);
 	}
 
