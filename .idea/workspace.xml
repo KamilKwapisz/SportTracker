@@ -1,50 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e19368e8-9e37-4523-ac7b-131e467c57ec" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/description.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/mssql_jdbc_6_2_2_jre8.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/SportTracker.iml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/production/SportTracker/Day.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/production/SportTracker/DistanceTraining.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/production/SportTracker/Exercise.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/production/SportTracker/FirstSwingExample.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/production/SportTracker/GUI$1.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/production/SportTracker/GUI$2.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/production/SportTracker/GUI.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/production/SportTracker/Main.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/production/SportTracker/Planner.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/production/SportTracker/Printer.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/production/SportTracker/SQLCommunication.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/production/SportTracker/Statistics.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/production/SportTracker/Test$1.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/production/SportTracker/Test.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/production/SportTracker/Training.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/production/SportTracker/UserInfo.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/production/SportTracker/com/intellij/uiDesigner/core/AbstractLayout.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/production/SportTracker/com/intellij/uiDesigner/core/DimensionInfo.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/production/SportTracker/com/intellij/uiDesigner/core/GridConstraints.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/production/SportTracker/com/intellij/uiDesigner/core/GridLayoutManager.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/production/SportTracker/com/intellij/uiDesigner/core/HorizontalInfo.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/production/SportTracker/com/intellij/uiDesigner/core/LayoutState.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/production/SportTracker/com/intellij/uiDesigner/core/Spacer.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/production/SportTracker/com/intellij/uiDesigner/core/SupportCode$TextWithMnemonic.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/production/SportTracker/com/intellij/uiDesigner/core/SupportCode.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/production/SportTracker/com/intellij/uiDesigner/core/Util.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/production/SportTracker/com/intellij/uiDesigner/core/VerticalInfo.class" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/FirstSwingExample.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/Printer.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/Test.form" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/Test.java" />
-    </list>
+    <list default="true" id="e19368e8-9e37-4523-ac7b-131e467c57ec" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -249,7 +206,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="width" value="976" />
     <option name="height" value="1038" />
@@ -434,16 +391,15 @@
       <workItem from="1522845220957" duration="7625000" />
       <workItem from="1522871772554" duration="1612000" />
       <workItem from="1522873706343" duration="1727000" />
-      <workItem from="1523029659523" duration="177000" />
+      <workItem from="1523029659523" duration="586000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25636000" />
+    <option name="totallyTimeSpent" value="26045000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1048" extended-state="7" />
-    <editor active="true" />
+    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -457,7 +413,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25104168" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25104168" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -972,19 +928,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Printer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="10" column="5" lean-forward="true" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
-          <folding>
-            <element signature="e#81#82#0" expanded="false" />
-            <element signature="e#113#114#0" expanded="false" />
-            <element signature="e#138#139#0" expanded="false" />
-            <element signature="e#178#179#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Test.form">
       <provider selected="true" editor-type-id="ui-designer">
         <state />
@@ -1134,6 +1077,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Day.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="11" column="15" lean-forward="false" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Printer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="10" column="5" lean-forward="true" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Statistics.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="21">
@@ -1145,14 +1104,6 @@
             <element signature="e#640#641#0" expanded="true" />
             <element signature="e#673#674#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Day.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="11" column="15" lean-forward="false" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="15" />
-          <folding />
         </state>
       </provider>
     </entry>
