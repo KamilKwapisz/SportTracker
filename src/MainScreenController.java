@@ -1,4 +1,4 @@
- package Controllers;
+
 
 import java.io.IOException;
 
@@ -13,13 +13,25 @@ public class MainScreenController {
 
 	@FXML
 	public void initialize() {
-		FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/Menu.fxml"));
+		loadMenu();
+		
+	}
+
+	public void loadMenu() {
+		FXMLLoader loader = new FXMLLoader(this.getClass().getResource("Menu.fxml"));
 		Pane pane = null;
 		try {
 			pane = loader.load();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		setScene(pane);
+		MenuController menuController = loader.getController();
+		menuController.setMainScreenController(this);
+	}
+
+	public void setScene(Pane pane) {
+		mainScreen.getChildren().clear();
 		mainScreen.getChildren().add(pane);
 	}
 
