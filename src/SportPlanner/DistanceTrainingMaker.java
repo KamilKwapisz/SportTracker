@@ -3,11 +3,11 @@ package SportPlanner;
 public class DistanceTrainingMaker {
     private DistanceSportBuilder distanceSport;
 
-    public void setDistanceSport(DistanceSportBuilder distanceSport) {
+    public void setDistanceTraining(DistanceSportBuilder distanceSport) {
         this.distanceSport = distanceSport;
     }
 
-    public  void makeDistanceSport(double distance, double time, double calories) {
+    public  void makeDistanceTraining(double distance, double time, double calories) {
         this.distanceSport.createDistanceSport();
         this.distanceSport.buildDistance(distance);
         this.distanceSport.buildTime(time);
@@ -15,7 +15,7 @@ public class DistanceTrainingMaker {
         this.distanceSport.buildCalories(calories);
     }
 
-    public DistanceTraining getDistanceSport() {
+    public DistanceTraining getDistanceTraining() {
         return distanceSport.getDistanceSport();
     }
 }

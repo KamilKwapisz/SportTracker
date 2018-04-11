@@ -1,17 +1,24 @@
-public class Training {
+package SportPlanner;
 
-    private Exercise [] exercises; // exercises array in particular training
+public class FitnessTraining implements FitnessSportPlan {
+
+    private Exercise[] exercises; // exercises array in particular training
     private double time; // training duration
-    private int calories; // calories burnt during this training
+    private double calories; // calories burnt during this training
     private int n; // exercises counter
 
-    public Training(double trainingTime){
+    public FitnessTraining(int exercisesNumber) {
+        this.n = 0;
+        exercises = new Exercise[exercisesNumber];
+    }
+
+    public FitnessTraining(double trainingTime){
         this.time = trainingTime;
         this.n = 0;
         exercises = new Exercise[5];
     }
 
-    public Training(double trainingTime, int exercisesNumber){
+    public FitnessTraining(double trainingTime, int exercisesNumber){
         this.time = trainingTime;
         this.n = 0;
         exercises = new Exercise[exercisesNumber];
@@ -33,12 +40,12 @@ public class Training {
         this.time = time;
     }
 
-    public int getCalories() {
-        return calories;
+    public void setCalories(double calories) {
+        this.calories = calories;
     }
 
-    public void calculateCalories(int calories) {
-        this.calories = calories;
+    public double getCalories() {
+        return calories;
     }
 
     public int getn() {
@@ -56,5 +63,18 @@ public class Training {
         for(int i = 0; i < n; i++)
             newExercises[i] = exercises[i];
         exercises = newExercises;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder str = new StringBuilder();
+        str.append("My Fitness Training" + "\n" + "Exercises: ");
+
+        for(int i = 0; i < n; i++) {
+            str.append(exercises[i].getName() + ", ");
+        }
+
+        str.append("\n" + "Time: " + time + "\n" + "Calories: " + calories);
+        return str.toString();
     }
 }
