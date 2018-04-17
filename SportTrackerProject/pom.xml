@@ -3,4 +3,8 @@
   <groupId>SportTrackerProject</groupId>
   <artifactId>SportTrackerProject</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+    <properties>
+        <maven.compiler.source>9</maven.compiler.source>
+        <maven.compiler.target>9</maven.compiler.target>
+    </properties>
 </project>
