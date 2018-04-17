@@ -1,4 +1,7 @@
-public class DistanceTraining extends Training {
+import SportPlanner.FitnessTraining;
+import SportPlanner.Exercise;
+
+public class DistanceTraining extends FitnessTraining {
 
     private double distance; // distance reached during training in meters
     private double avgSpeed; // training average speed in m/s
@@ -29,12 +32,4 @@ public class DistanceTraining extends Training {
         this.avgSpeed = this.distance / super.getTime();
     }
 
-    public static void main(String[] args) {
-        Exercise e = new Exercise("running", 5880, 0, 3000);
-        Exercise e2 = new Exercise("running2", 120, 0, 500);
-        DistanceTraining dt = new DistanceTraining(3500, 6000,2 );
-        dt.addExercise(e);
-        dt.addExercise(e2);
-        System.out.println(dt.getAvgSpeed());
-    }
 }

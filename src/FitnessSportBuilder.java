@@ -1,4 +1,7 @@
-public class FitnessSportBuilder implements FitnessBuilder {
+import SportPlanner.Exercise;
+import SportPlanner.FitnessTraining;
+
+public class FitnessSportBuilder implements SportPlanner.FitnessSportBuilder {
     private FitnessTraining fitnessTraining;
 
     public FitnessSportBuilder() {

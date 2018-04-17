@@ -1,9 +1,10 @@
+import SportPlanner.FitnessTraining;
 public class Day {
 
     private String date;
-    private Training training;
+    private FitnessTraining training;
 
-    public Day(String dateString, Training training) {
+    public Day(String dateString, FitnessTraining training) {
         this.training = training;
         this.date = dateString;
     }
@@ -16,11 +17,11 @@ public class Day {
         this.date = this.date = dateString;
     }
 
-    public Training getTraining() {
+    public FitnessTraining getTraining() {
         return training;
     }
 
-    public void setTraining(Training training) {
+    public void setTraining(FitnessTraining training) {
         this.training = training;
     }
 
