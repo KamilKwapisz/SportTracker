@@ -26,7 +26,6 @@ public class SportMaker {
                 .buildExercise();
 
 
-
         Exercise exercise2 = new Exercise.ExerciseBuilder("Push Ups")
                 .time(30)
                 .reps(10)

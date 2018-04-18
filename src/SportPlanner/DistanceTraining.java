@@ -25,9 +25,9 @@ public class DistanceTraining implements DistanceSportPlan {
     @Override
     public String toString() {
         return "My Distance Training"
-                + "\n" + "Distance: " + distance
-                + "\n" + "Time: " + time
-                + "\n" + "AvgSpeed: " + avgSpeed
-                + "\n" + "Calories: " + calories;
+                + "(" + "distance: " + distance
+                + ", " + "time: " + time
+                + ", " + "average speed: " + avgSpeed
+                + ", " + "calories burnt: " + calories + ")";
     }
 }

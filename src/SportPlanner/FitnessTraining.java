@@ -68,13 +68,13 @@ public class FitnessTraining implements FitnessSportPlan {
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
-        str.append("My Fitness Training" + "\n" + "Exercises: ");
+        str.append("My Fitness Training" + "(");
 
         for(int i = 0; i < n; i++) {
-            str.append(exercises[i].getName() + ", ");
+            str.append(exercises[i].getReps() + " " + exercises[i].getName() + ", ");
         }
 
-        str.append("\n" + "Time: " + time + "\n" + "Calories: " + calories);
+        str.append(") " + "time: " + time + " calories: " + calories);
         return str.toString();
     }
 }
