@@ -10,7 +10,7 @@
          <font>
             <Font size="25.0" />
          </font></Label>
-      <Label layoutX="130.0" layoutY="20.0" prefHeight="52.0" prefWidth="283.0" text="Imię i Nazwisko" AnchorPane.topAnchor="20.0">
+      <Label fx:id="pUser" layoutX="130.0" layoutY="20.0" prefHeight="52.0" prefWidth="283.0" text="Imię i Nazwisko" AnchorPane.topAnchor="20.0">
          <font>
             <Font size="22.0" />
          </font>

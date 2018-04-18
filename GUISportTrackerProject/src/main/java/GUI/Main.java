@@ -21,6 +21,7 @@ public class Main extends Application {
 		Scene scene = new Scene(pane, 800, 600);
 
 		stage.setScene(scene);
+                stage.setResizable(false);
 		stage.setTitle("SportTracker");
 		stage.show();
 
