@@ -1,46 +1,28 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 import javafx.application.Application;
-
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-
 import javafx.scene.layout.AnchorPane;
 
 import javafx.stage.Stage;
 
-/**
- *
- * @author Game
- */
 public class Main extends Application {
-    
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(this.getClass().getResource("MainScreen.fxml"));
-        AnchorPane aPane = loader.load();
-        MainScreenController mainC = loader.getController();
-        
-        
-        
-        Scene scene = new Scene(aPane, 800, 600);
-		primaryStage.setScene(scene);
-		primaryStage.setTitle("SportTracker");
-                primaryStage.setResizable(false);
-		primaryStage.show();
-    }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        launch(args);
-    }
-    
+	public static void main(String[] args) {
+		launch(args);
+	}
+
+	@Override
+	public void start(Stage stage) throws Exception {
+		FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/UserInterface/fxml/Menu.fxml"));
+		AnchorPane pane = loader.load();
+		Scene scene = new Scene(pane, 800, 600);
+
+		stage.setScene(scene);
+                stage.setResizable(false);
+		stage.setTitle("SportTracker");
+		stage.show();
+
+	}
+
 }
