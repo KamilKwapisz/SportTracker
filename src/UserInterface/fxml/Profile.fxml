@@ -4,13 +4,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="625.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ProfileController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="625.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.Controllers.ProfileScreenController">
    <children>
       <Label layoutX="29.0" layoutY="16.0" prefHeight="52.0" prefWidth="95.0" text="User:" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
          <font>
             <Font size="25.0" />
          </font></Label>
-      <Label layoutX="130.0" layoutY="20.0" prefHeight="52.0" prefWidth="283.0" text="Imię i Nazwisko" AnchorPane.topAnchor="20.0">
+      <Label fx:id="pUser" layoutX="130.0" layoutY="20.0" prefHeight="52.0" prefWidth="283.0" text="Imię i Nazwisko" AnchorPane.topAnchor="20.0">
          <font>
             <Font size="22.0" />
          </font>
