@@ -1,16 +1,25 @@
 import SportPlanner.*;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 public class Day {
 
-    private String date; // DD.MM.YYYY
+    private String date; // dd.mm.yyyy
     private FitnessTraining fitnessTraining;
     private DistanceTraining distanceTraining;
+
+    public Day(String dateString) {
+        // day with date only
+        this.setDate(dateString);
+    }
 
     public Day(String dateString, FitnessTraining training) {
         // day with fitness training only
         this.setFitnessTraining(training);
         this.setDate(dateString);
     }
+
 
     public Day(String dateString, DistanceTraining distanceTraining) {
         // day with distance training only
@@ -48,6 +57,25 @@ public class Day {
 
     public void setDistanceTraining(DistanceTraining distanceTraining) {
         this.distanceTraining = distanceTraining;
+    }
+
+    public boolean isLater(String strDate){
+        DateFormat formatter;
+        Date newDate, date;
+        formatter = new SimpleDateFormat("dd.mm.yyyy");
+        try {
+            newDate = formatter.parse(strDate);
+            date = formatter.parse(this.date);
+            if (date.compareTo(newDate) == -1){
+                return false;
+            }
+            else
+                return true;
+        } catch (java.text.ParseException e ){
+            System.out.println("Blad");
+            return false;
+        }
+
     }
 
     @Override
@@ -94,11 +122,13 @@ public class Day {
         Day day2 = new Day("19.04.2018", fitnessTraining);
         Day day3 = new Day("21.04.2018", distanceTraining, fitnessTraining);
 
-        System.out.println(day1);
-        System.out.println("=========================");
-        System.out.println(day2);
-        System.out.println("=========================");
-        System.out.println(day3);
+        Planner planner = new Planner(3);
+        planner.addDay(day1);
+        planner.addDay(day2);
+        planner.addDay(day3);
+
+        System.out.println(planner);
+
     }
 
 
