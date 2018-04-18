@@ -1,4 +1,0 @@
-﻿user sporttrakonrad
-password Mr1X?5TKU!3h
-ip den1.mssql2.gear.host
-port 1433
