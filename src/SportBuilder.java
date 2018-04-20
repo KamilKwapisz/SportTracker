@@ -1,7 +1,7 @@
 import SportPlanner.*;
 import SportPlanner.DistanceTraining;
 
-public class BuilderThatActuallySucks {
+public class SportBuilder {
     DistanceTrainingMaker distanceDirector;
     FitnessTrainingMaker fitnessDirector;
 
@@ -33,7 +33,7 @@ public class BuilderThatActuallySucks {
     }
 
     public static void main(String[] args) {
-        BuilderThatActuallySucks myBuilder = new BuilderThatActuallySucks();
+        SportBuilder myBuilder = new SportBuilder();
 
         System.out.println(
                 myBuilder.getDistanceTraining(

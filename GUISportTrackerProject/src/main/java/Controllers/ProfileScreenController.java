@@ -97,7 +97,7 @@ public class ProfileScreenController {
 		if(userHeight.getText().isEmpty())
 			return;
 		int height =Integer.parseInt(userHeight.getText());
-		if(height>0 && height<300) {
+		if(height>40 && height<300) {
 		this.setHeightL(userHeight.getText());
 		}else {
 			userHeight.clear();
@@ -130,12 +130,24 @@ public class ProfileScreenController {
 		double weight = Double.parseDouble(weightL.getText());
 		height*=0.01;
 		double BMI = 0;
-		
+		String result;
+                
 		BMI = weight/(height*height);
 		DecimalFormat df = new DecimalFormat();
 		df.setMaximumFractionDigits(2);
 		
-		bmiL.setText(df.format(BMI));
-	}
+                if(BMI<=18.49){
+                    result = "niedowaga";
+                }else if(BMI<=24.99){
+                    result = "prawid³owa";
+                }else {
+                    result = "nadwaga";
+                }
+                    
+                    
+                    bmiL.setText(df.format(BMI)+" "+result);
+        }
 	
+        
+       
 }

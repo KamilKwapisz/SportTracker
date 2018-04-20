@@ -60,10 +60,10 @@
       <AgeTextField fx:id="userAge" layoutX="303.0" layoutY="176.0" prefHeight="25.0" prefWidth="255.0" />
       <HeightTextField fx:id="userHeight" layoutX="303.0" layoutY="236.0" prefHeight="25.0" prefWidth="255.0" />
       <WeightTextField fx:id="userWeight" layoutX="303.0" layoutY="296.0" prefHeight="25.0" prefWidth="255.0" />
-      <Button fx:id="nameAdd" layoutX="468.0" layoutY="84.0" mnemonicParsing="false" onAction="#addName" text="AddName" />
-      <Button fx:id="ageAdd" layoutX="563.0" layoutY="176.0" mnemonicParsing="false" onAction="#addAge" text="AddAge" />
-      <Button fx:id="heightAdd" layoutX="563.0" layoutY="236.0" mnemonicParsing="false" onAction="#addHeight" text="AddHeight" />
-      <Button fx:id="weightAdd" layoutX="563.0" layoutY="296.0" mnemonicParsing="false" onAction="#addWeight" text="AddWeight" />
+      <Button fx:id="nameAdd" layoutX="468.0" layoutY="84.0" mnemonicParsing="false" onAction="#addName" text="Set name" />
+      <Button fx:id="ageAdd" layoutX="563.0" layoutY="176.0" mnemonicParsing="false" onAction="#addAge" text="Set age" />
+      <Button fx:id="heightAdd" layoutX="563.0" layoutY="236.0" mnemonicParsing="false" onAction="#addHeight" text="Set height" />
+      <Button fx:id="weightAdd" layoutX="563.0" layoutY="296.0" mnemonicParsing="false" onAction="#addWeight" text="Set weight" />
       <Button fx:id="buttonBMI" layoutX="134.0" layoutY="394.0" mnemonicParsing="false" onAction="#calculateBMI" text="BMI" />
    </children>
 </AnchorPane>
