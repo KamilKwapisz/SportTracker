@@ -18,33 +18,35 @@ public class SQLCommunication {
     public static void main(String[] args) {
         try {
             SQLCommunication serv = new SQLCommunication();
+            String[][] result;
 
-            System.out.println("Users table..:");
-            String[][] result = serv.getFromTable("users", "name", "surname");
-            printStringMatrix(result);
-            System.out.println("");
+//            System.out.println("Users table..:");
+//            result = serv.getFromTable("users", "name", "surname");
+//            printStringMatrix(result);
+//            System.out.println("");
+
 
             System.out.println("All rows of fitnessTraining table..:");
             result = serv.getFromTable("fitnessTraining", "discipline", "repeats", "calories", "time", "favourite");
             printStringMatrix(result);
             System.out.println("");
 
-            System.out.println("Rows of fitnessTraining table with discipline = pushups && favourite = 1..:");
-            result = serv.getFromTableWhere("fitnessTraining", "discipline", "pushups", "favourite", "1", "+", "repeats", "calories");
-            printStringMatrix(result);
-            System.out.println("");
-
-            System.out.println("Adding another fitnessTraining 'squats' with 999 repeats..:");
-            serv.addToTable("fitnessTraining", "discipline", "pushups", "repeats", "999", "calories", "122", "time", "120", "favourite", "1");
-            result = serv.getFromTable("fitnessTraining", "discipline", "repeats", "calories", "time", "favourite");
-            printStringMatrix(result);
-            System.out.println("");
-
-            System.out.println("Deleteing all fitnessTraining with 999 repeats..:");
-            serv.deleteRowsWhere("fitnessTraining", "repeats", "999");
-            result = serv.getFromTable("fitnessTraining", "discipline", "repeats", "calories", "time", "favourite");
-            printStringMatrix(result);
-            System.out.println("");
+//            System.out.println("Rows of fitnessTraining table with discipline = pushups && favourite = 1..:");
+//            result = serv.getFromTableWhere("fitnessTraining", "discipline", "pushups", "favourite", "1", "+", "repeats", "calories");
+//            printStringMatrix(result);
+//            System.out.println("");
+//
+//            System.out.println("Adding another fitnessTraining 'squats' with 999 repeats..:");
+//            serv.addToTable("fitnessTraining", "discipline", "pushups", "repeats", "999", "calories", "122", "time", "120", "favourite", "1");
+//            result = serv.getFromTable("fitnessTraining", "discipline", "repeats", "calories", "time", "favourite");
+//            printStringMatrix(result);
+//            System.out.println("");
+//
+//            System.out.println("Deleteing all fitnessTraining with 999 repeats..:");
+//            serv.deleteRowsWhere("fitnessTraining", "repeats", "999");
+//            result = serv.getFromTable("fitnessTraining", "discipline", "repeats", "calories", "time", "favourite");
+//            printStringMatrix(result);
+//            System.out.println("");
 
         } catch (ClassNotFoundException | SQLException ex) {
             System.out.println("SQLCommunication error: " + ex.getMessage());
@@ -265,7 +267,7 @@ public class SQLCommunication {
                 System.out.println();
             }
         } catch (NullPointerException ex) {
-            System.out.println("SQLCommunication error at printStringMatrix: recieved pointer to null!");
+            System.out.println("SQLCommunication error at printStringMatrix: received pointer to null!");
         }
     }
 

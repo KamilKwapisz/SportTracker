@@ -1,81 +1,106 @@
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
+
 public class Planner {
 
-    private Day [] days;
-    private int n; // days number
+    private TrainingDay[] trainingDays;
+    private int n; // trainingDays number
 
     public Planner(){
-        days = new Day[30];
+        trainingDays = new TrainingDay[30];
     }
 
     public Planner(int daysNumber){
-        days = new Day[daysNumber];
+        trainingDays = new TrainingDay[daysNumber];
     }
 
-    public void addDay(Day day){
-        if( n == days.length )
+    public void addDay(TrainingDay trainingDay){
+        if( n == trainingDays.length )
             doubleSize();
-        days[n++] = day;
+        trainingDays[n++] = trainingDay;
     }
 
     private void doubleSize() {
-        Day [] newDays = new Day[2*days.length];
+        TrainingDay[] newTrainingDays = new TrainingDay[2* trainingDays.length];
         for( int i= 0; i < n; i++ )
-            newDays[i] = days[i];
-        days = newDays;
+            newTrainingDays[i] = trainingDays[i];
+        trainingDays = newTrainingDays;
     }
 
     public int getN(){
         return n;
     }
 
-    public Day[] getDays(){
-        return days;
+    public TrainingDay[] getTrainingDays(){
+        return trainingDays;
     }
 
-    public Day[] showCalendar(int daysNumber){
+    public TrainingDay[] showCalendar(int daysNumber){
 
         if ( daysNumber >= this.n ){
-            Day[] daysToShow = new Day[daysNumber];
+            TrainingDay[] daysToShow = new TrainingDay[daysNumber];
 
             return daysToShow;
         }
-        Day[] daysToShow = new Day[n];
-        System.arraycopy( days, 0, daysToShow, 0, n );
+        TrainingDay[] daysToShow = new TrainingDay[n];
+        System.arraycopy(trainingDays, 0, daysToShow, 0, n );
         return daysToShow;
     }
 
-    public Day [] getDaysSince(String firstDate){
-        Day [] newDays = new Day[this.n];
-        int index = 0;
-        for(int i = 0; i < this.n; i++){
-            if(days[i].isLater(firstDate))
-                newDays[index++] = days[i];
-        }
-        return newDays;
-    }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("");
         for(int i = 0; i < n; i++)
-            sb.append(days[i]).append("\n");
+            sb.append(trainingDays[i]).append("\n");
         return sb.toString();
     }
 
+    public static List<String> getDaysBetweenDates(String startDateString, String endDateString)
+    {
+        DateFormat formatter;
+        Date startdate, enddate;
+        formatter = new SimpleDateFormat("dd.mm.yyyy");
+
+        try {
+            startdate = formatter.parse(startDateString);
+            enddate = formatter.parse(endDateString);
+            List<String> dates = new ArrayList<>();
+            Calendar calendar = new GregorianCalendar();
+            calendar.setTime(startdate);
+
+
+            while (calendar.getTime().before(enddate))
+            {
+                Date result = calendar.getTime();
+                dates.add(result.toString());
+                calendar.add(Calendar.DATE, 1);
+            }
+            return dates;
+        } catch (java.text.ParseException e ) {
+            System.out.println("Blad");
+        }
+        List<String> dates = new ArrayList<>();
+        dates.add("blad");
+        return dates;
+
+    }
+
     public static void main(String[] args) {
-        Day d1 = new Day("19.04.2018");
-        Day d2 = new Day("20.04.2018");
-        Day d3 = new Day("12.04.2018");
+        TrainingDay d1 = new TrainingDay("19.04.2018");
+        TrainingDay d2 = new TrainingDay("20.04.2018");
+        TrainingDay d3 = new TrainingDay("12.04.2018");
 
         Planner planner = new Planner(3);
         planner.addDay(d1);
         planner.addDay(d2);
         planner.addDay(d3);
 
-        Day [] days = new Day[3];
-        days = planner.getDaysSince("11.04.2018"); // get days which are later than given date from planner
-        for(Day d: days)
-            System.out.println(d);
+        List<String> dates = planner.getDaysBetweenDates("19.04.2018", "28.04.2018");
+        dates.forEach(System.out::println);
+
+
     }
 
 }

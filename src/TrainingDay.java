@@ -3,31 +3,31 @@ import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
-public class Day {
+public class TrainingDay {
 
     private String date; // dd.mm.yyyy
     private FitnessTraining fitnessTraining;
     private DistanceTraining distanceTraining;
 
-    public Day(String dateString) {
+    public TrainingDay(String dateString) {
         // day with date only
         this.setDate(dateString);
     }
 
-    public Day(String dateString, FitnessTraining training) {
+    public TrainingDay(String dateString, FitnessTraining training) {
         // day with fitness training only
         this.setFitnessTraining(training);
         this.setDate(dateString);
     }
 
 
-    public Day(String dateString, DistanceTraining distanceTraining) {
+    public TrainingDay(String dateString, DistanceTraining distanceTraining) {
         // day with distance training only
         this.setDistanceTraining(distanceTraining);
         this.setDate(dateString);
     }
 
-    public Day(String dateString, DistanceTraining distanceTraining, FitnessTraining fitnessTraining) {
+    public TrainingDay(String dateString, DistanceTraining distanceTraining, FitnessTraining fitnessTraining) {
         // day with both types of training
         this.setDistanceTraining(distanceTraining);
         this.setFitnessTraining(fitnessTraining);
@@ -118,14 +118,14 @@ public class Day {
 
         FitnessTraining fitnessTraining = fitnessDirector.getFitnessTraining();
 
-        Day day1 = new Day("18.04.2018", distanceTraining);
-        Day day2 = new Day("19.04.2018", fitnessTraining);
-        Day day3 = new Day("21.04.2018", distanceTraining, fitnessTraining);
+        TrainingDay trainingDay1 = new TrainingDay("18.04.2018", distanceTraining);
+        TrainingDay trainingDay2 = new TrainingDay("19.04.2018", fitnessTraining);
+        TrainingDay trainingDay3 = new TrainingDay("21.04.2018", distanceTraining, fitnessTraining);
 
         Planner planner = new Planner(3);
-        planner.addDay(day1);
-        planner.addDay(day2);
-        planner.addDay(day3);
+        planner.addDay(trainingDay1);
+        planner.addDay(trainingDay2);
+        planner.addDay(trainingDay3);
 
         System.out.println(planner);
 
