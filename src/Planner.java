@@ -4,56 +4,34 @@ import java.util.*;
 
 public class Planner {
 
-    private TrainingDay[] trainingDays;
-    private int n; // trainingDays number
+    private ArrayList<TrainingDay> trainingDays;
 
     public Planner(){
-        trainingDays = new TrainingDay[30];
+        trainingDays = new ArrayList<TrainingDay>();
     }
 
     public Planner(int daysNumber){
-        trainingDays = new TrainingDay[daysNumber];
+        trainingDays = new ArrayList<TrainingDay>(daysNumber);
     }
 
     public void addDay(TrainingDay trainingDay){
-        if( n == trainingDays.length )
-            doubleSize();
-        trainingDays[n++] = trainingDay;
+        trainingDays.add(trainingDay);
     }
 
-    private void doubleSize() {
-        TrainingDay[] newTrainingDays = new TrainingDay[2* trainingDays.length];
-        for( int i= 0; i < n; i++ )
-            newTrainingDays[i] = trainingDays[i];
-        trainingDays = newTrainingDays;
-    }
-
-    public int getN(){
-        return n;
-    }
-
-    public TrainingDay[] getTrainingDays(){
+    public ArrayList<TrainingDay> getTrainingDays(){
         return trainingDays;
     }
 
-    public TrainingDay[] showCalendar(int daysNumber){
+    public ArrayList<TrainingDay> showCalendar(int daysNumber){
 
-        if ( daysNumber >= this.n ){
-            TrainingDay[] daysToShow = new TrainingDay[daysNumber];
-
-            return daysToShow;
-        }
-        TrainingDay[] daysToShow = new TrainingDay[n];
-        System.arraycopy(trainingDays, 0, daysToShow, 0, n );
-        return daysToShow;
+        return trainingDays;
     }
-
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("");
-        for(int i = 0; i < n; i++)
-            sb.append(trainingDays[i]).append("\n");
+        for(int i = 0; i < trainingDays.size(); i++)
+            sb.append(trainingDays.get(i)).append("\n");
         return sb.toString();
     }
 
@@ -96,9 +74,10 @@ public class Planner {
         planner.addDay(d1);
         planner.addDay(d2);
         planner.addDay(d3);
+        System.out.println(planner);
 
         List<String> dates = planner.getDaysBetweenDates("19.04.2018", "28.04.2018");
-        dates.forEach(System.out::println);
+//        dates.forEach(System.out::println);
 
 
     }
