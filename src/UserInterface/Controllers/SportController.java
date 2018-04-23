@@ -1,4 +1,4 @@
-package UserInterface.Controllers;
+package Controllers;
 
 public class SportController {
 	MenuController menuController;
