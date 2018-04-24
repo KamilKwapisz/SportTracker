@@ -2,6 +2,7 @@
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Queue;
 
 public class SQLCommunication {
 
@@ -20,10 +21,28 @@ public class SQLCommunication {
             SQLCommunication serv = new SQLCommunication();
             String[][] result;
 
-//            System.out.println("Users table..:");
-//            result = serv.getFromTable("users", "name", "surname");
-//            printStringMatrix(result);
-//            System.out.println("");
+
+            updateRowsTo("users", "name", "JanuszJava", "age", "13", "where", "login", "Janus", "sex", "male");
+            //REGISTRATION
+            //    addToTable("users", "login", "JavaLogin", "password", Hasher.hash("SIEMKA"));
+            //LOGIN
+            result = getFromTableWhere("users", "login", "JavaLogin", "password", Hasher.hash("SIEMKA"));
+            if( result != null)
+                System.out.println("Signed in!");
+            else
+                System.out.println("Bad login detals.. :c");
+
+            result = getFromTableWhere("users", "login", "JavaLogin", "password", Hasher.hash("SIEMKAAA"));
+            if( result != null)
+                System.out.println("Signed in!");
+            else
+                System.out.println("Bad login detals.. :c");
+
+
+            /*System.out.println("Users table..:");
+            result = serv.getFromTable("users", "name", "surname");
+            printStringMatrix(result);
+            System.out.println("");
 
 
             System.out.println("All rows of fitnessTraining table..:");
@@ -31,22 +50,23 @@ public class SQLCommunication {
             printStringMatrix(result);
             System.out.println("");
 
-//            System.out.println("Rows of fitnessTraining table with discipline = pushups && favourite = 1..:");
-//            result = serv.getFromTableWhere("fitnessTraining", "discipline", "pushups", "favourite", "1", "+", "repeats", "calories");
-//            printStringMatrix(result);
-//            System.out.println("");
-//
-//            System.out.println("Adding another fitnessTraining 'squats' with 999 repeats..:");
-//            serv.addToTable("fitnessTraining", "discipline", "pushups", "repeats", "999", "calories", "122", "time", "120", "favourite", "1");
-//            result = serv.getFromTable("fitnessTraining", "discipline", "repeats", "calories", "time", "favourite");
-//            printStringMatrix(result);
-//            System.out.println("");
-//
-//            System.out.println("Deleteing all fitnessTraining with 999 repeats..:");
-//            serv.deleteRowsWhere("fitnessTraining", "repeats", "999");
-//            result = serv.getFromTable("fitnessTraining", "discipline", "repeats", "calories", "time", "favourite");
-//            printStringMatrix(result);
-//            System.out.println("");
+            System.out.println("Rows of fitnessTraining table with discipline = pushups && favourite = 1..:");
+            result = serv.getFromTableWhere("fitnessTraining", "discipline", "pushups", "favourite", "1", "+", "repeats", "calories");
+            printStringMatrix(result);
+            System.out.println("");
+
+            System.out.println("Adding another fitnessTraining 'squats' with 999 repeats..:");
+            serv.addToTable("fitnessTraining", "discipline", "pushups", "repeats", "999", "calories", "122", "time", "120", "favourite", "1");
+            result = serv.getFromTable("fitnessTraining", "discipline", "repeats", "calories", "time", "favourite");
+            printStringMatrix(result);
+            System.out.println("");
+
+            System.out.println("Deleteing all fitnessTraining with 999 repeats..:");
+            serv.deleteRowsWhere("fitnessTraining", "repeats", "999");
+            result = serv.getFromTable("fitnessTraining", "discipline", "repeats", "calories", "time", "favourite");
+            printStringMatrix(result);
+            System.out.println("");
+            */
 
         } catch (ClassNotFoundException | SQLException ex) {
             System.out.println("SQLCommunication error: " + ex.getMessage());
@@ -62,7 +82,52 @@ public class SQLCommunication {
         stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
     }
 
-    public String[][] getFromTable(String... args) {
+    public static void updateRowsTo ( String... args ){
+        /* Use samples:
+         *   updateRowsTo( "users", "name", "Jan", "where", "login", "Janek1990");
+         *       updates rows in the column NAME to 'Jan' in table USERS where LOGIN is 'Janek1990'
+         */
+        try{
+            String query = buildUpdateQuery(args);
+            stmt.executeUpdate(query);
+        } catch (SQLException e) {
+            System.out.println("SQLCommunication error at updateRowsWhere: " + e.getMessage());
+        }
+
+    }
+
+    private static String buildUpdateQuery(String... args ) {
+        // Sample query: update users set age = 40, name = 'Janek' where login = 'janus' and height = 192
+
+        try {
+            if (args.length < 6)
+                throw new IllegalArgumentException("SQLCommunication at updateRowsTo: recived too few arguments!");
+
+            int whereAt = 0;
+            for (int i = 0; i < args.length; i++) {
+                if ("where" == (args[i]).toLowerCase())
+                    whereAt = i;
+            }
+            if (whereAt == 0)
+                throw new IllegalArgumentException("SQLcommunication at updateRowsTo: missing condition arguments! Make sure to use 'where' operand");
+
+            StringBuilder sb = new StringBuilder("update ");
+            sb.append(args[0]).append(" set ").append(args[1]).append(" = '").append(args[2]).append("'");
+            for (int i = 3; i < whereAt; i = i + 2) {
+                sb.append(", ").append(args[i]).append(" = '").append(args[i + 1]).append("'");
+            }
+            sb.append(" where ").append(args[whereAt + 1]).append(" = '").append(args[whereAt + 2]).append("'");
+            for (int i = whereAt + 3; i < args.length; i = i + 2) {
+                sb.append(" and ").append(args[i]).append(" = '").append(args[i + 1]).append("'");
+            }
+
+            return sb.toString();
+        } catch ( ArrayIndexOutOfBoundsException e){
+                throw new IllegalArgumentException("SQLCommunication at UpdateRowsTo: recived too few arguments! Missing condition arguments!");
+        }
+    }
+
+    public static String[][] getFromTable(String... args) {
         /* Use samples: 
     * getFromTableWhere( "users", "name");
     * getFromTableWhere("users", "name", "surname");
@@ -101,7 +166,7 @@ public class SQLCommunication {
         return query;
     }
 
-    public String[][] getFromTableWhere(String... args) {
+    public static String[][] getFromTableWhere(String... args) {
         /* Use samples: 
     * getFromTableWhere( "users", "name", "Daniel");
     * getFromTableWhere("users", "name", "Daniel", "age", "14");
@@ -177,7 +242,7 @@ public class SQLCommunication {
         sb.append(" from ").append(args[0]);
         sb.append(" where ");
         sb.append(args[1]).append(" = '").append(args[2]).append("'");
-        for (int i = 3; i < extraAt; i = i + 2) {
+        for (int i = 3; i+1 < extraAt; i = i + 2) {
             sb.append(" and ").append(args[i]).append(" = '").append(args[i + 1]).append("'");
         }
 
@@ -185,10 +250,10 @@ public class SQLCommunication {
         return query;
     }
 
-    public void addToTable(String... args) {
+    public static void addToTable(String... args) {
         /* Use samples: 
-    * addToTable( "fitnessTraining", "discipline", "squats", "repeats", "40", "time", "50", "calories", "112", "favourite", "1");
-         */
+        * addToTable( "fitnessTraining", "discipline", "squats", "repeats", "40", "time", "50", "calories", "112", "favourite", "1");
+        */
         try {
             String query = buildAddQuery(args);
             stmt.executeUpdate(query);
@@ -218,7 +283,10 @@ public class SQLCommunication {
         return sb.toString();
     }
 
-    public void deleteRowsWhere(String... args) { //delete from miasta where id_miasta ='4'
+    public static void deleteRowsWhere(String... args) {
+        /* Use samples:
+        *  deleteRowsWhere("users", "login", "Smith1990");
+        */
         try {
         String query = buildDeleteQuery(args);
         stmt.executeUpdate(query);
@@ -229,6 +297,8 @@ public class SQLCommunication {
     }
 
     private static String buildDeleteQuery(String... args) {
+        // Sample query: delete from miasta where id_miasta ='4' and xyz = 'ABC'
+
         StringBuilder sb = new StringBuilder("delete from ");
         sb.append(args[0]).append(" where ");
         sb.append(args[1]).append(" = '").append(args[2]).append("'");
@@ -240,6 +310,9 @@ public class SQLCommunication {
 
     private static String[][] rsToStringMatrix(ResultSet rs, String... args) {
         try {
+            if(!rs.next())
+                return null;
+
             rs.last();
             int rowNumber = rs.getRow();
             rs.first();
@@ -259,14 +332,19 @@ public class SQLCommunication {
     }
 
     private static void printStringMatrix(String[][] matrix) {
+
         try {
+            if (matrix == null) {
+                System.out.println("SQLCommunication error at printStringMatrix: received pointer to null!");
+                return;
+            }
             for (String[] m : matrix) {
                 for (String s : m) {
                     System.out.print(s + " ");
                 }
                 System.out.println();
             }
-        } catch (NullPointerException ex) {
+        } catch ( NullPointerException e){
             System.out.println("SQLCommunication error at printStringMatrix: received pointer to null!");
         }
     }
