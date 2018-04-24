@@ -1,4 +1,4 @@
-package Controllers;
+package UserInterface.Controllers;
 
 public class CalendarController {
 	MenuController menuController;

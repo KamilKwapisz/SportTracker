@@ -1,8 +1,8 @@
-package Controllers;
+package UserInterface.Controllers;
 
-/*Dodaj do Profile.fxml jeœli b³edy wyskakuj¹:
+/*Dodaj do Profile.fxml jeï¿½li bï¿½edy wyskakujï¿½:
  * 		<?import TextFields.*?>  		
- * to siê chrzani po modyfikacji pliku Profile.fxml*/
+ * to siï¿½ chrzani po modyfikacji pliku Profile.fxml*/
 
 import java.text.DecimalFormat;
 
@@ -139,7 +139,7 @@ public class ProfileScreenController {
                 if(BMI<=18.49){
                     result = "niedowaga";
                 }else if(BMI<=24.99){
-                    result = "prawid³owa";
+                    result = "prawidï¿½owa";
                 }else {
                     result = "nadwaga";
                 }
