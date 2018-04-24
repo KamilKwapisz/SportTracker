@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import UserInterface.TextFields.*?>  
 
 <AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="625.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.Controllers.ProfileScreenController">
    <children>
