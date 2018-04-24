@@ -1,4 +1,4 @@
-package TextFields;
+package UserInterface.TextFields;
 
 import javafx.scene.control.TextField;
 

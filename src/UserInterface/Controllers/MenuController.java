@@ -1,4 +1,4 @@
-package Controllers;
+package UserInterface.Controllers;
 
 import java.io.IOException;
 import javafx.fxml.FXML;
@@ -23,7 +23,7 @@ public class MenuController {
 
 	
 	public void openProfile() {
-		FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/Profile.fxml"));
+		FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/UserInterface/fxml/Profile.fxml"));
 		AnchorPane pane = null;
 		try {
 			pane = loader.load();
@@ -38,7 +38,7 @@ public class MenuController {
 	
 	@FXML
 	public void openStatistics(){
-		FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/Statistics.fxml"));
+		FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/UserInterface/fxml/Statistics.fxml"));
 		AnchorPane pane = null;
 		try {
 			pane = loader.load();
@@ -52,7 +52,7 @@ public class MenuController {
 	
 	@FXML
 	public void openHistory(){
-		FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/History.fxml"));
+		FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/UserInterface/fxml/History.fxml"));
 		AnchorPane pane = null;
 		try {
 			pane = loader.load();
@@ -66,7 +66,7 @@ public class MenuController {
 	
 	@FXML
 	public void openSport(){
-		FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/Sport.fxml/"));
+		FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/UserInterface/fxml/Sport.fxml/"));
 		AnchorPane pane = null;
 		try {
 			pane = loader.load();
@@ -81,7 +81,7 @@ public class MenuController {
 	
 	@FXML
 	public void openCalendar(){
-		FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/Calendar.fxml/"));
+		FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/UserInterface/fxml/Calendar.fxml/"));
 		AnchorPane pane = null;
 		try {
 			pane = loader.load();
