@@ -5,22 +5,22 @@
  */
 package UserInterface.Controllers;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+
+import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
-/**
- * FXML Controller class
- *
- * @author Game
- */
-public class LoginController implements Initializable {
 
+public class LoginController  {
+    Stage stage;
+    
     @FXML
     private TextField UserNameL;
     @FXML
@@ -33,18 +33,25 @@ public class LoginController implements Initializable {
     private PasswordField passwordR;
     @FXML
     private Button registerB;
-
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+ 
+    public void setStage(Stage stage){
+        this.stage=stage;
+    }
 
     @FXML
     private void signIn(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/UserInterface/fxml/Menu.fxml"));
+        AnchorPane pane = null;
         
+        try{
+            pane = loader.load();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        
+        Scene scene = new Scene(pane);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
