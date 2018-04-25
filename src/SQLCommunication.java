@@ -149,10 +149,9 @@ public class SQLCommunication {
             rs.last();
             int rowNumber = rs.getRow();
             rs.first();
+
             ResultSetMetaData rsmd = rs.getMetaData();
             int columnCount = rsmd.getColumnCount();
-
-            System.out.println("KOLUMNY: " + columnCount);
 
             String[] columns = new String[columnCount];
             for (int i = 1; i <= columnCount; i++ ) {
