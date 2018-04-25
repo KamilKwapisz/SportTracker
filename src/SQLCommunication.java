@@ -21,8 +21,18 @@ public class SQLCommunication {
             SQLCommunication serv = new SQLCommunication();
             String[][] result;
 
-            result = customQuery("Select * from users");
+            result = customQuery("Select ft.repeats from FitnessTraining ft where ft.discipline='pushups'");
             printStringMatrix(result);
+
+            result = customQuery("Select ft.repeats from FitnessTraining ft");
+            printStringMatrix(result);
+
+            StringBuilder insertQuery = new StringBuilder("Insert into FitnessTraining (login, discipline, repeats, time, calories, favourite, date) values (");
+            insertQuery.append("'JavaLogin', ").append("'squats', ").append("337, ").append("120, 297, 0, 03-07-12)");
+
+            customQuery(insertQuery.toString());
+
+
 
             /*
             updateRowsTo("users", "name", "JanuszJava", "age", "13", "where", "login", "Janus", "sex", "male");
@@ -377,7 +387,7 @@ public class SQLCommunication {
         }
     }
 
-    private static void printStringMatrix(String[][] matrix) {
+    public static void printStringMatrix(String[][] matrix) {
 
         try {
             if (matrix == null) {
