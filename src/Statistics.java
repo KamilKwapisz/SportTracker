@@ -3,25 +3,65 @@ import java.sql.SQLException;
 
 public class Statistics {
 
-//    private double totalTime; // total training time in seconds
-//    private double totalDistance; // total distance from running and cycling in meters;
-//    private int repsNumber; // number of repetitions from all trainings
-//    private String sport; // sport type
+    public int getTime(String username){
+        try {
+            SQLCommunication serv = new SQLCommunication();
 
-//    public Statistics(String sportName){
-//        this.totalDistance = 0.0;
-//        this.totalTime = 0.0;
-//        this.repsNumber = 0;
-//        this.sport = sportName;
-//    }
+            String[][] result;
+            int time = 0; // in minutes
 
-//    public double getTotalTime() {
-//        return totalTime;
-//    }
+            if (username != null) {
+                StringBuilder sb = new StringBuilder("Select dt.time from DistanceTraining dt join users u on (u.login=dt.login) where u.login='");
+                sb.append(username).append("'");
+                result = serv.customQuery(sb.toString());
+            } else
+                result = serv.customQuery("Select dt.time from DistanceTraining dt");
+            for (String[] row : result)
+                for (String timeStr : row)
+                    time += Integer.parseInt(timeStr);
 
-//    public double getTotalDistance() {
-//        return totalDistance;
-//    }
+            return time;
+        } catch (ClassNotFoundException | SQLException ex) {
+            System.out.println("SQLCommunication error: " + ex.getMessage());
+            return 1;
+        } catch (IOException ex) {
+            System.out.println("SQLCommunication error: " + ex.getMessage());
+            return 1;
+        }
+    }
+
+    public int getDistance(String username){
+        try {
+            SQLCommunication serv = new SQLCommunication();
+
+            String[][] distanceResult;
+            int dist = 0; // in meters
+
+            if (username != null) {
+                StringBuilder sb = new StringBuilder("Select dt.distance from DistanceTraining dt join users u on (u.login=dt.login) where u.login='");
+                sb.append(username).append("'");
+                distanceResult = serv.customQuery(sb.toString());
+            } else
+                distanceResult = serv.customQuery("Select dt.distance from DistanceTraining dt");
+            for (String[] row : distanceResult)
+                for (String distStr : row)
+                    dist += Integer.parseInt(distStr);
+
+            return dist;
+        } catch (ClassNotFoundException | SQLException ex) {
+            System.out.println("SQLCommunication error: " + ex.getMessage());
+            return 0;
+        } catch (IOException ex) {
+            System.out.println("SQLCommunication error: " + ex.getMessage());
+            return 0;
+        }
+    }
+
+    public double getAvgSpeed(String username){
+        double avgSpeed; // in m/min
+        avgSpeed = (double)getDistance(username) / (double)getTime(username);
+        return avgSpeed;
+    }
 
     public int getRepsNumber(String username) {
         try {
@@ -49,30 +89,14 @@ public class Statistics {
         }
     }
 
-//    public String getSport() {
-//        return sport;
-//    }
-
-
-//    public double calculateAvgSpeed(){
-//        double speed = this.totalDistance / this.totalTime;
-//        return speed;
-//    }
-
-//    @Override
-//    public String toString(){
-//        StringBuilder sb = new StringBuilder();
-//        sb.append(this.sport)
-//                .append("time= ").append(this.totalTime).append("s, ")
-//                .append("distance = ").append(this.totalDistance).append("m, ")
-//                .append("reps = ").append(this.repsNumber);
-//        return sb.toString();
-//    }
-
     public static void main(String[] args) {
         Statistics statistics = new Statistics();
         System.out.println(statistics.getRepsNumber(null));
         System.out.println(statistics.getRepsNumber("JavaLogin"));
+
+        System.out.println(statistics.getDistance(null));
+        System.out.println(statistics.getTime(null));
+        System.out.println(statistics.getAvgSpeed(null));
     }
 
 }
