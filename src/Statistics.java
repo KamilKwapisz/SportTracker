@@ -3,156 +3,100 @@ import java.sql.SQLException;
 
 public class Statistics {
 
-    public Statistics(String username){
-        getDistanceTrainingStats(username);
-        getFitnessTrainingStats(username);
-
-    }
-
-    private class DistanceTrainingStats{
-        private int time; // in minutes
-        private int distance; // in meters
-        private double avgSpeed; // in m/min
-
-        public int getTime(){return this.time;}
-        public int getDistance(){return this.distance;}
-        public double getAvgSpeed(){return this.avgSpeed;}
-
-        public void setTime(int time) { this.time = time; }
-        public void setDistance(int distance) { this.distance = distance; }
-        public void setAvgSpeed(double avgSpeed1) { this.avgSpeed = avgSpeed1; }
-    }
-
-    private class FitnessTrainingStats{
-        private int time; // in minutes
-        private int reps; // in meters
-
-        public int getTime(){return this.time;}
-        public int getReps(){return this.reps;}
-
-        public void setTime(int time) { this.time = time; }
-        public void setReps(int reps) { this.reps = reps; }
-    }
-
-    private DistanceTrainingStats distanceTrainingStats =  new DistanceTrainingStats();
-    private FitnessTrainingStats fitnessTrainingStats=  new FitnessTrainingStats();
-
-
-
-
-    public void getDistanceTrainingStats(String username){
+    public int getTime(String username){
         try {
             SQLCommunication serv = new SQLCommunication();
 
             String[][] result;
-            StringBuilder query = new StringBuilder("");
-
             int time = 0; // in minutes
-            int distance = 0; // in meters
 
-            // fetching training time
             if (username != null) {
-                query.append("Select dt.time from DistanceTraining dt join users u on (u.login=dt.login) where u.login='");
-                query.append(username).append("'");
-                result = serv.customQuery(query.toString());
+                StringBuilder sb = new StringBuilder("Select dt.time from DistanceTraining dt join users u on (u.login=dt.login) where u.login='");
+                sb.append(username).append("'");
+                result = serv.customQuery(sb.toString());
             } else
-                query.append("Select dt.time from DistanceTraining dt");
-                result = serv.customQuery(query.toString());
-
+                result = serv.customQuery("Select dt.time from DistanceTraining dt");
             for (String[] row : result)
                 for (String timeStr : row)
                     time += Integer.parseInt(timeStr);
 
-            // fetching training distance
-            String newQuery = query.toString().replace("dt.time", "dt.distance");
-            result = serv.customQuery(newQuery);
-            for (String[] row : result)
-                for (String distStr : row)
-                    distance += Integer.parseInt(distStr);
-
-            distanceTrainingStats.setDistance(distance);
-            distanceTrainingStats.setTime(time);
-            distanceTrainingStats.setAvgSpeed((double)distance/(double)time);
-
-
+            return time;
         } catch (ClassNotFoundException | SQLException ex) {
             System.out.println("SQLCommunication error: " + ex.getMessage());
+            return 1;
         } catch (IOException ex) {
             System.out.println("SQLCommunication error: " + ex.getMessage());
-        } catch (NullPointerException ex) {
-            System.out.println("User " + username + " has no trainings done");
+            return 1;
         }
     }
 
-    public void getFitnessTrainingStats(String username){
+    public int getDistance(String username){
+        try {
+            SQLCommunication serv = new SQLCommunication();
+
+            String[][] distanceResult;
+            int dist = 0; // in meters
+
+            if (username != null) {
+                StringBuilder sb = new StringBuilder("Select dt.distance from DistanceTraining dt join users u on (u.login=dt.login) where u.login='");
+                sb.append(username).append("'");
+                distanceResult = serv.customQuery(sb.toString());
+            } else
+                distanceResult = serv.customQuery("Select dt.distance from DistanceTraining dt");
+            for (String[] row : distanceResult)
+                for (String distStr : row)
+                    dist += Integer.parseInt(distStr);
+
+            return dist;
+        } catch (ClassNotFoundException | SQLException ex) {
+            System.out.println("SQLCommunication error: " + ex.getMessage());
+            return 0;
+        } catch (IOException ex) {
+            System.out.println("SQLCommunication error: " + ex.getMessage());
+            return 0;
+        }
+    }
+
+    public double getAvgSpeed(String username){
+        double avgSpeed; // in m/min
+        avgSpeed = (double)getDistance(username) / (double)getTime(username);
+        return avgSpeed;
+    }
+
+    public int getRepsNumber(String username) {
         try {
             SQLCommunication serv = new SQLCommunication();
 
             String[][] result;
-            StringBuilder query = new StringBuilder("");
-
             int reps = 0;
-
-            // fetching repetitions number
             if (username != null) {
-                query.append("Select ft.repeats from FitnessTraining ft join users u on (u.login=ft.login) where u.login='");
-                query.append(username).append("'");
+                StringBuilder sb = new StringBuilder("Select ft.repeats from FitnessTraining ft join users u on (u.login=ft.login) where u.login='");
+                sb.append(username).append("'");
+                result = serv.customQuery(sb.toString());
             } else
-                query.append("Select ft.time from FitnessTraining ft");
-            result = serv.customQuery(query.toString());
-
+                result = serv.customQuery("Select ft.repeats from FitnessTraining ft");
             for (String[] row : result)
-                for (String repsStr : row)
-                    reps += Integer.parseInt(repsStr);
+                for (String repetitions : row)
+                    reps += Integer.parseInt(repetitions);
 
-            // fetching training distance
-            String newQuery = query.toString().replace("dt.time", "dt.distance");
-            result = serv.customQuery(newQuery);
-            for (String[] row : result)
-                for (String distStr : row)
-                    reps += Integer.parseInt(distStr);
-
-            fitnessTrainingStats.setReps(reps);
-
+            return reps;
         } catch (ClassNotFoundException | SQLException ex) {
             System.out.println("SQLCommunication error: " + ex.getMessage());
+            return 0;
         } catch (IOException ex) {
             System.out.println("SQLCommunication error: " + ex.getMessage());
-        } catch (NullPointerException ex) {
-            System.out.println("User " + username + " has no trainings done");
+            return 0;
         }
     }
 
-    public String getTrainingTime(){
-        StringBuilder sb = new StringBuilder("");
-        sb.append(distanceTrainingStats.getTime());
-        return sb.toString();
-    }
-
-    public String getTrainingDistance(){
-        StringBuilder sb = new StringBuilder("");
-        sb.append(distanceTrainingStats.getDistance());
-        return sb.toString();
-    }
-
-    public String getTrainingAvgSpeed(){
-        StringBuilder sb = new StringBuilder("");
-        sb.append(distanceTrainingStats.getAvgSpeed());
-        return sb.toString();
-    }
-
-    public String getTrainingReps(){
-        StringBuilder sb = new StringBuilder("");
-        sb.append(fitnessTrainingStats.getReps());
-        return sb.toString();
-    }
-
-
     public static void main(String[] args) {
-        Statistics statistics = new Statistics(null);
-        System.out.println(statistics.getTrainingAvgSpeed());
-        System.out.println(statistics.getTrainingReps());
+        Statistics statistics = new Statistics();
+        System.out.println(statistics.getRepsNumber(null));
+        System.out.println(statistics.getRepsNumber("JavaLogin"));
 
+        System.out.println(statistics.getDistance(null));
+        System.out.println(statistics.getTime(null));
+        System.out.println(statistics.getAvgSpeed(null));
     }
 
 }
