@@ -21,7 +21,10 @@ public class SQLCommunication {
             SQLCommunication serv = new SQLCommunication();
             String[][] result;
 
+            result = customQuery("Select * from users");
+            printStringMatrix(result);
 
+            /*
             updateRowsTo("users", "name", "JanuszJava", "age", "13", "where", "login", "Janus", "sex", "male");
             //REGISTRATION
             //    addToTable("users", "login", "JavaLogin", "password", Hasher.hash("SIEMKA"));
@@ -38,7 +41,7 @@ public class SQLCommunication {
             else
                 System.out.println("Bad login detals.. :c");
 
-
+            */
             /*System.out.println("Users table..:");
             result = serv.getFromTable("users", "name", "surname");
             printStringMatrix(result);
@@ -124,6 +127,50 @@ public class SQLCommunication {
             return sb.toString();
         } catch ( ArrayIndexOutOfBoundsException e){
                 throw new IllegalArgumentException("SQLCommunication at UpdateRowsTo: recived too few arguments! Missing condition arguments!");
+        }
+    }
+
+    public static String[][] customQuery(String query){
+        try{
+            rs = stmt.executeQuery( query );
+            return customRsToStringMatrix( rs );
+
+        } catch ( SQLException e ){
+            System.out.println("SQLCommunication error at customQuery: " + e.getMessage());
+            return null;
+        }
+    }
+
+    private static String[][] customRsToStringMatrix(ResultSet rs) {
+        try {
+            if(!rs.next())
+                return null;
+
+            rs.last();
+            int rowNumber = rs.getRow();
+            rs.first();
+            ResultSetMetaData rsmd = rs.getMetaData();
+            int columnCount = rsmd.getColumnCount();
+
+            System.out.println("KOLUMNY: " + columnCount);
+
+            String[] columns = new String[columnCount];
+            for (int i = 1; i <= columnCount; i++ ) {
+                columns[i-1] = rsmd.getColumnName(i);
+            }
+
+            rs.first();
+            String matrix[][] = new String[rowNumber][columnCount];
+            for (int i = 0; i < rowNumber; i++) {
+                for (int j = 0; j < columnCount; j++) {
+                    matrix[i][j] = (rs.getString(columns[j]));
+                }
+                rs.next();
+            }
+            return matrix;
+        } catch (SQLException ex) {
+            System.out.println("SQLCommunication error at rsToStringMatrix: " + ex.getMessage());
+            return null;
         }
     }
 
