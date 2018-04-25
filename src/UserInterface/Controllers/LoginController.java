@@ -6,14 +6,15 @@
 package UserInterface.Controllers;
 
 
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -22,15 +23,15 @@ public class LoginController  {
     Stage stage;
     
     @FXML
-    private TextField UserNameL;
+    private JFXTextField usernameL;
     @FXML
     private Button loginB;
     @FXML
-    private PasswordField passwordL;
+    private JFXPasswordField passwordL;
     @FXML
-    private TextField UsernameR;
+    private JFXTextField usernameR;
     @FXML
-    private PasswordField passwordR;
+    private JFXPasswordField passwordR;
     @FXML
     private Button registerB;
  
@@ -39,7 +40,7 @@ public class LoginController  {
     }
 
     @FXML
-    private void signIn(ActionEvent event) {
+    private void signIn() {
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/UserInterface/fxml/Menu.fxml"));
         AnchorPane pane = null;
         
