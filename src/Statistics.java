@@ -37,6 +37,52 @@ public class Statistics {
     private DistanceTrainingStats distanceTrainingStats =  new DistanceTrainingStats();
     private FitnessTrainingStats fitnessTrainingStats=  new FitnessTrainingStats();
 
+    private SQLCommunication serv;
+
+    private void establishDBConnection(){
+        try {
+            SQLCommunication serv = new SQLCommunication();
+
+            String[][] result;
+            StringBuilder query = new StringBuilder("");
+
+            int time = 0; // in minutes
+            int distance = 0; // in meters
+
+            // fetching training time
+            if (username != null) {
+                query.append("Select dt.time from DistanceTraining dt join users u on (u.login=dt.login) where u.login='");
+                query.append(username).append("'");
+                result = serv.customQuery(query.toString());
+            } else
+                query.append("Select dt.time from DistanceTraining dt");
+            result = serv.customQuery(query.toString());
+
+            for (String[] row : result)
+                for (String timeStr : row)
+                    time += Integer.parseInt(timeStr);
+
+            // fetching training distance
+            String newQuery = query.toString().replace("dt.time", "dt.distance");
+            result = serv.customQuery(newQuery);
+            for (String[] row : result)
+                for (String distStr : row)
+                    distance += Integer.parseInt(distStr);
+
+            distanceTrainingStats.setDistance(distance);
+            distanceTrainingStats.setTime(time);
+            distanceTrainingStats.setAvgSpeed((double)distance/(double)time);
+
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            System.out.println("SQLCommunication error: " + ex.getMessage());
+        } catch (IOException ex) {
+            System.out.println("SQLCommunication error: " + ex.getMessage());
+        } catch (NullPointerException ex) {
+            System.out.println("User " + username + " has no trainings done");
+        }
+    }
+
 
 
 
