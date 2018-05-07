@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Calendar;
 
 public class Statistics {
 
@@ -22,6 +23,18 @@ public class Statistics {
         public void setTime(int time) { this.time = time; }
         public void setDistance(int distance) { this.distance = distance; }
         public void setAvgSpeed(double avgSpeed1) { this.avgSpeed = avgSpeed1; }
+
+        private int timeMonthly; // in minutes
+        private int distanceMonthly; // in meters
+        private double avgSpeedMonthly; // in m/min
+
+        public int getTimeMonthly(){return this.timeMonthly;}
+        public int getDistanceMonthly(){return this.distanceMonthly;}
+        public double getAvgSpeedMonthly(){return this.avgSpeedMonthly;}
+
+        public void setTimeMonthly(int timeMonthly) { this.timeMonthly = timeMonthly; }
+        public void setDistanceMonthly(int distanceMonthly) { this.distanceMonthly = distanceMonthly; }
+        public void setAvgSpeedMonthly(double avgSpeed1) { this.avgSpeedMonthly = avgSpeed1; }
     }
 
     private class FitnessTrainingStats{
@@ -33,6 +46,15 @@ public class Statistics {
 
         public void setTime(int time) { this.time = time; }
         public void setReps(int reps) { this.reps = reps; }
+
+        private int timeMonthly; // in minutes
+        private int repsMonthly; // in meters
+
+        public int getTimeMonthly(){return this.timeMonthly;}
+        public int getRepsMonthly(){return this.repsMonthly;}
+
+        public void setTimeMonthly(int time) { this.timeMonthly = time; }
+        public void setRepsMonthly(int reps) { this.repsMonthly = reps; }
     }
 
     private DistanceTrainingStats distanceTrainingStats =  new DistanceTrainingStats();
@@ -51,6 +73,47 @@ public class Statistics {
         }
     }
 
+
+    public void getDistanceTrainingStatsMonthly(String username){
+        try {
+            String[][] result;
+            StringBuilder query = new StringBuilder("");
+
+            int timeMonthly = 0; // in minutes
+            int distanceMonthly = 0; // in meters
+            String monthAndYear = getCurrentMonthAndYear();
+            // fetching training time
+            if (username != null) {
+                query.append("Select dt.time from DistanceTraining dt join users u on (u.login=dt.login) where u.login='");
+                query.append(username).append("'");
+                query.append(" and date like '__").append(monthAndYear).append("'");
+
+            } else {
+                query.append("Select dt.time from DistanceTraining dt");
+                query.append(" where date like '__").append(monthAndYear).append("'");
+            }
+            result = serv.customQuery(query.toString());
+
+
+            for (String[] row : result)
+                for (String timeStr : row)
+                    timeMonthly += Integer.parseInt(timeStr);
+
+            // fetching training distance
+            String newQuery = query.toString().replace("dt.time", "dt.distance");
+            result = serv.customQuery(newQuery);
+            for (String[] row : result)
+                for (String distStr : row)
+                    distanceMonthly += Integer.parseInt(distStr);
+
+            distanceTrainingStats.setDistanceMonthly(distanceMonthly);
+            distanceTrainingStats.setTimeMonthly(timeMonthly);
+            distanceTrainingStats.setAvgSpeed((double)distanceMonthly/(double)timeMonthly);
+
+        } catch (NullPointerException ex) {
+            System.out.println("User " + username + " has no trainings done");
+        }
+    }
 
     public void getDistanceTrainingStats(String username){
         try {
@@ -89,6 +152,7 @@ public class Statistics {
         }
     }
 
+
     public void getFitnessTrainingStats(String username){
         try {
             String[][] result;
@@ -122,15 +186,68 @@ public class Statistics {
         }
     }
 
+    public void getFitnessStatsMonthly(String username){
+        try {
+            String[][] result;
+            StringBuilder query = new StringBuilder("");
+
+            int repsMonthly = 0;
+
+            String monthAndYear = getCurrentMonthAndYear();
+
+            // fetching repetitions number in month
+            if (username != null) {
+                query.append("Select ft.repeats from FitnessTraining ft join users u on (u.login=ft.login) where u.login='");
+                query.append(username).append("'");
+                query.append(" and date like '__").append(monthAndYear).append("'");
+            } else {
+                query.append("Select ft.time from FitnessTraining ft");
+                query.append(" where date like '__").append(monthAndYear).append("'");
+            }
+            result = serv.customQuery(query.toString());
+
+            for (String[] row : result)
+                for (String repsStr : row)
+                    repsMonthly += Integer.parseInt(repsStr);
+
+            // fetching training distance
+            String newQuery = query.toString().replace("dt.time", "dt.distance");
+            result = serv.customQuery(newQuery);
+            for (String[] row : result)
+                for (String distStr : row)
+                    repsMonthly += Integer.parseInt(distStr);
+
+            fitnessTrainingStats.setRepsMonthly(repsMonthly);
+
+        } catch (NullPointerException ex) {
+            System.out.println("User " + username + " has no trainings done");
+        }
+
+    }
+
+    // metody dostępowe do statystyk
+
     public String getTrainingTime(){
         StringBuilder sb = new StringBuilder("");
         sb.append(distanceTrainingStats.getTime());
         return sb.toString();
     }
 
+    public String getTrainingTimeMonthly(){
+        StringBuilder sb = new StringBuilder("");
+        sb.append(distanceTrainingStats.getTimeMonthly());
+        return sb.toString();
+    }
+
     public String getTrainingDistance(){
         StringBuilder sb = new StringBuilder("");
         sb.append(distanceTrainingStats.getDistance());
+        return sb.toString();
+    }
+
+    public String getTrainingDistanceMonthly(){
+        StringBuilder sb = new StringBuilder("");
+        sb.append(distanceTrainingStats.getDistanceMonthly());
         return sb.toString();
     }
 
@@ -146,11 +263,35 @@ public class Statistics {
         return sb.toString();
     }
 
+    public String getTrainingRepsMonthly(){
+        StringBuilder sb = new StringBuilder("");
+        sb.append(fitnessTrainingStats.getRepsMonthly());
+        return sb.toString();
+    }
+
+    public String getTrainingAvgSpeedMonthly(){
+        StringBuilder sb = new StringBuilder("");
+        sb.append(distanceTrainingStats.getAvgSpeedMonthly());
+        return sb.toString();
+    }
+
+
+    private static String getCurrentMonthAndYear(){
+        String month = "";
+        int monthNumber = Calendar.getInstance().get(Calendar.MONTH)+1;
+        if( monthNumber < 10)
+            month += "0";
+        month += monthNumber;
+        int year = Calendar.getInstance().get(Calendar.YEAR);
+        return month + year;
+    }
 
     public static void main(String[] args) {
         Statistics statistics = new Statistics(null);
         System.out.println(statistics.getTrainingAvgSpeed());
         System.out.println(statistics.getTrainingReps());
+        System.out.println(statistics.getTrainingReps());
+        System.out.println(statistics.getTrainingAvgSpeedMonthly());
 
     }
 

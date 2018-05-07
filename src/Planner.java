@@ -65,6 +65,7 @@ public class Planner {
 
     }
 
+
     public static void main(String[] args) {
         TrainingDay d1 = new TrainingDay("19.04.2018");
         TrainingDay d2 = new TrainingDay("20.04.2018");
@@ -81,5 +82,7 @@ public class Planner {
 
 
     }
+
+
 
 }
