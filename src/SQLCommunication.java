@@ -1,4 +1,6 @@
 
+import SportPlanner.DistanceTraining;
+
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
@@ -28,35 +30,39 @@ public class SQLCommunication {
             SQLCommunication serv = new SQLCommunication();
             String[][] result;
 
-            deleteRowsWhere("users", "login", "JavaLogin"); // unregistering
+//            deleteRowsWhere("users", "login", "JavaLogin"); // unregistering
+//
+//            //REGISTRATION - login has to be an unique value
+//            System.out.println("Registeration and signing in..");
+//            addToTable("users", "login", "JavaLogin", "password", Hasher.hash("SIEMKA"));
+//            //LOGIN
+//            result = getFromTableWhere("users", "login", "JavaLogin", "password", Hasher.hash("SIEMKA"));
+//            if( result != null)
+//                System.out.println("Signed in!");
+//            else
+//                System.out.println("Invalid credentials!");
+//            System.out.println();
+//
+//            System.out.println("Various tests:");
+//            getFromTable("fitnessTraining", "discipline", "favourite");
+//            getFromTableWhere( "fitnessTraining", "favourite", "1", "+", "discipline");
+//            customQuery("Select * from users");
+//
+//            addToTable( "fitnessTraining", "discipline", "squats", "repeats", "800", "time", "400", "calories", "6969","favourite","0", "login","Janus", "date","010218");
+//            updateRowsTo("fitnessTraining", "discipline", "squats2", "where", "calories", "6969");
+//            System.out.println();
+//
+//            deleteRowsWhere("users", "login", "JavaLogin");
+//            System.out.println("Signing in.. (invalid)");
+//            result = getFromTableWhere("users", "login", "JavaLogin", "password", Hasher.hash("SIEMKA"));
+//            if( result != null)
+//                System.out.println("Signed in!");
+//            else
+//                System.out.println("Invalid credentials!");
 
-            //REGISTRATION - login has to be an unique value
-            System.out.println("Registeration and signing in..");
-            addToTable("users", "login", "JavaLogin", "password", Hasher.hash("SIEMKA"));
-            //LOGIN
-            result = getFromTableWhere("users", "login", "JavaLogin", "password", Hasher.hash("SIEMKA"));
-            if( result != null)
-                System.out.println("Signed in!");
-            else
-                System.out.println("Invalid credentials!");
-            System.out.println();
-
-            System.out.println("Various tests:");
-            getFromTable("fitnessTraining", "discipline", "favourite");
-            getFromTableWhere( "fitnessTraining", "favourite", "1", "+", "discipline");
-            customQuery("Select * from users");
-
-            addToTable( "fitnessTraining", "discipline", "squats", "repeats", "800", "time", "400", "calories", "6969","favourite","0", "login","Janus", "date","010218");
-            updateRowsTo("fitnessTraining", "discipline", "squats2", "where", "calories", "6969");
-            System.out.println();
-
-            deleteRowsWhere("users", "login", "JavaLogin");
-            System.out.println("Signing in.. (invalid)");
-            result = getFromTableWhere("users", "login", "JavaLogin", "password", Hasher.hash("SIEMKA"));
-            if( result != null)
-                System.out.println("Signed in!");
-            else
-                System.out.println("Invalid credentials!");
+            result = customQuery("Select dt.time from DistanceTraining dt where dt.date like '%'");
+//            String [][] a = rsToStringMatrix(result);
+            System.out.println(result);
 
         } catch ( Exception e ){
             System.out.println("SQLCommunication error at main: " + e.getMessage());
