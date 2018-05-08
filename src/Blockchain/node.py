@@ -15,10 +15,12 @@ def mine():
     last_proof = last_block['proof']
     proof = blockchain.proof_of_work(last_proof)
 
-    blockchain.add_transaction(
-        sender="0000000000",
-        receiver=node_identifier,
-        amount=1
+    blockchain.add_training(
+        user="admin",
+        training_type="None",
+        training_time=0,
+        reps=0,
+        distance=0
     )
 
     previous_hash = blockchain.hash(last_block)
@@ -27,7 +29,7 @@ def mine():
     response = {
         'message': "New block was mined!",
         'index': block['index'],
-        'transactions': block['transactions'],
+        'transactions': block['trainings'],
         'proof': block['proof'],
         'previous_hash': block['previous_hash'],
     }
@@ -35,19 +37,24 @@ def mine():
     return jsonify(response), 200
 
 
-@node.route('/transactions/new', methods=['POST'])
+@node.route('/trainings/new', methods=['POST'])
 def new_transaction():
     values = request.get_json()
 
     # Check that the required fields are in the POST'ed data
-    required = ['sender', 'receiver', 'amount']
+    required = ['user', 'training_type', 'training_time', 'reps', 'distance']
     if not all(value in values for value in required):
         return 'Missing values', 400
 
-    # Create a new transaction
-    index = blockchain.add_transaction(values['sender'], values['receiver'], values['amount'])
+    # Create a new training
+    index = blockchain.add_training(values['user'],
+                                    values['training_type'],
+                                    values['reps'],
+                                    values['training_time'],
+                                    values['distance']
+                                    )
 
-    response = {'message': f'Transaction will be added to Block {index}'}
+    response = {'message': f'Training will be added to Block {index}'}
     return jsonify(response), 201
 
 

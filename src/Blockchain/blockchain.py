@@ -9,8 +9,8 @@ class Blockchain(object):
 
     def __init__(self):
         self.chain: list = []
-        self.transactions: list = []
-        self.nodes: set = set()
+        self.trainings: list = []
+        self.nodes: list = list()
         self.new_block(previous_hash=1, proof=100)  # genesis block
 
     def new_block(self, proof: int, previous_hash=None) -> dict:
@@ -23,30 +23,29 @@ class Blockchain(object):
         block: dict = {
             'index': len(self.chain) + 1,
             'timestamp': time(),
-            'transactions': self.transactions,
+            'trainings': self.trainings,
             'proof': proof,
             'previous_hash': previous_hash or self.hash(self.chain[-1]),
         }
 
         # Reset the current list of transactions
-        self.transactions = []
+        self.trainings = []
 
         self.chain.append(block)
         return block
 
-    def add_transaction(self, sender: str, receiver: str, amount: int):
+    def add_training(self, user: str, training_type: str, reps: int, training_time: float, distance: int):
         """
         Method add transaction to a blockchain
-        :param sender: str
-        :param receiver: str
-        :param amount: int
-        :return: 
         """
-        # Adds a new transaction to the list of transactions
-        self.transactions.append({
-            'sender': sender,
-            'receiver': receiver,
-            'amount': amount,
+        # Adds a new training to a training's list
+        self.trainings.append({
+            'user': user,
+            'training_type': training_type,
+            'training_time': training_time,
+            'reps': reps,
+            'distance': distance,
+
         })
 
         return self.last_block['index'] + 1

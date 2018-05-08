@@ -75,9 +75,10 @@ public class Planner {
         planner.addDay(d1);
         planner.addDay(d2);
         planner.addDay(d3);
-        System.out.println(planner);
+//        System.out.println(planner);
 
         List<String> dates = planner.getDaysBetweenDates("19.04.2018", "28.04.2018");
+        System.out.println(dates);
 //        dates.forEach(System.out::println);
 
 

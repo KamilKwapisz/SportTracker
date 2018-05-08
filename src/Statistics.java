@@ -275,8 +275,7 @@ public class Statistics {
         return sb.toString();
     }
 
-
-    private static String getCurrentMonthAndYear(){
+    public static String getCurrentMonthAndYear(){
         String month = "";
         int monthNumber = Calendar.getInstance().get(Calendar.MONTH)+1;
         if( monthNumber < 10)
