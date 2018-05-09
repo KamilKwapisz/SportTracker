@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 public class Requests {
 
-    public String postToNode(String urlStr, String user, String type, double time, int reps, int distance) {
+    public double addTraining(String urlStr, String user, String type, double time, int reps, int distance) {
         try{
 
             URL url = new URL("http://127.0.0.1:5000/trainings/new");
@@ -30,18 +30,27 @@ public class Requests {
             }
             StringBuilder result = new StringBuilder();
             BufferedReader rd = new BufferedReader(new InputStreamReader(http.getInputStream()));
+//            System.out.println(http.getResponseMessage());
             String line;
+            double points = 0;
             while ((line = rd.readLine()) != null) {
                 result.append(line);
+                try{ // parse points number
+                    points = Double.parseDouble(line);
+                } catch (Exception e){
+
+                }
+
             }
             rd.close();
-            return result.toString();
+//            return result.toString();
+            return points;
 
 
         } catch (Exception e){
             // do nothing :)
         }
-        return "NOTHING";
+        return 0;
     }
 
     public static String getHTML(String urlToRead) throws Exception {
@@ -62,7 +71,7 @@ public class Requests {
     public static void main(String[] args) {
         Requests r = new Requests();
         try{
-            System.out.println(r.postToNode("http://127.0.0.1:5000/trainings/new",
+            System.out.println(r.addTraining("http://127.0.0.1:5000/trainings/new",
                     "nowy",
                     "jumping",
                     200,

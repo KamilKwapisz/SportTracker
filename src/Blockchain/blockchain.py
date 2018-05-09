@@ -153,3 +153,30 @@ class Blockchain(object):
             return True
 
         return False
+
+    @staticmethod
+    def calculate_points(values: dict) -> float:
+        """
+        Method calculates how many points user should receive for one particular training
+        30 mins of training = 2 points (60 min = 4pts, 15 min  = 1pts so on and so forth
+        24 reps = 2 pts
+        1000 meters = 2 pts
+        :param values: dictionary that contains all training data. keys: user, training_type, reps, training_time, distance
+        :return: user's points(float)
+        """
+
+        points: float = 0
+
+        reps: int = values['reps']
+        training_time: float = values['training_time']
+        distance: int = values['distance']
+
+        points += reps / 12
+        points += distance / 500
+        points += training_time / 15
+
+        return points
+
+
+
+

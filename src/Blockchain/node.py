@@ -54,8 +54,15 @@ def new_transaction():
                                     values['distance']
                                     )
 
-    response = {'message': f'Training will be added to Block {index}'}
-    return jsonify(response), 201
+    # now we can calculate how many points user should get for accomplishing this training
+    given_points = blockchain.calculate_points(values)
+
+    # response = {
+    #             'message': f'Training will be added to Block {index}',
+    #             'points': given_points
+    #             }
+    # return jsonify(response), 201
+    return str(given_points), 201
 
 
 @node.route('/chain', methods=['GET'])
