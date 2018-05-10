@@ -228,61 +228,45 @@ public class Statistics {
     // metody dostępowe do statystyk
 
     public String getTrainingTime(){
-        StringBuilder sb = new StringBuilder("");
-        sb.append(distanceTrainingStats.getTime());
-        return sb.toString();
+        return "" + distanceTrainingStats.getTime();
     }
 
     public String getTrainingTimeMonthly(){
-        StringBuilder sb = new StringBuilder("");
-        sb.append(distanceTrainingStats.getTimeMonthly());
-        return sb.toString();
+        return "" + distanceTrainingStats.getTimeMonthly();
     }
 
     public String getTrainingDistance(){
-        StringBuilder sb = new StringBuilder("");
-        sb.append(distanceTrainingStats.getDistance());
-        return sb.toString();
+        return "" + distanceTrainingStats.getDistance();
     }
 
     public String getTrainingDistanceMonthly(){
-        StringBuilder sb = new StringBuilder("");
-        sb.append(distanceTrainingStats.getDistanceMonthly());
-        return sb.toString();
+        return "" + distanceTrainingStats.getDistanceMonthly();
     }
 
     public String getTrainingAvgSpeed(){
-        StringBuilder sb = new StringBuilder("");
-        sb.append(distanceTrainingStats.getAvgSpeed());
-        return sb.toString();
+        return "" + distanceTrainingStats.getAvgSpeed();
     }
 
     public String getTrainingReps(){
-        StringBuilder sb = new StringBuilder("");
-        sb.append(fitnessTrainingStats.getReps());
-        return sb.toString();
+        return "" + fitnessTrainingStats.getReps();
     }
 
     public String getTrainingRepsMonthly(){
-        StringBuilder sb = new StringBuilder("");
-        sb.append(fitnessTrainingStats.getRepsMonthly());
-        return sb.toString();
+        return "" + fitnessTrainingStats.getRepsMonthly();
     }
 
     public String getTrainingAvgSpeedMonthly(){
-        StringBuilder sb = new StringBuilder("");
-        sb.append(distanceTrainingStats.getAvgSpeedMonthly());
-        return sb.toString();
+        return "" + distanceTrainingStats.getAvgSpeedMonthly();
     }
 
     public static String getCurrentMonthAndYear(){
-        String month = "";
         int monthNumber = Calendar.getInstance().get(Calendar.MONTH)+1;
+        String thisMonth = "";
         if( monthNumber < 10)
-            month += "0";
-        month += monthNumber;
+            thisMonth += "0";
+        thisMonth += monthNumber;
         int year = Calendar.getInstance().get(Calendar.YEAR);
-        return month + year;
+        return thisMonth + year;
     }
 
     public static void main(String[] args) {
