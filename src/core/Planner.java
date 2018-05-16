@@ -1,3 +1,5 @@
+package core;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -16,6 +18,15 @@ public class Planner {
 
     public void addDay(TrainingDay trainingDay){
         trainingDays.add(trainingDay);
+    }
+
+    public TrainingDay getDay(int index) throws IndexOutOfBoundsException {
+        try{
+            return trainingDays.get(index);
+        } catch (IndexOutOfBoundsException e){
+            throw new IndexOutOfBoundsException("There are only " + trainingDays.size() + " elements in the list.");
+        }
+
     }
 
     public ArrayList<TrainingDay> getTrainingDays(){

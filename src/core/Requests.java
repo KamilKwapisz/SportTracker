@@ -1,14 +1,15 @@
+package core;
+
 import java.io.*;
 import java.net.*;
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
 
 public class Requests {
 
     public double addTraining(String urlStr, String user, String type, double time, int reps, int distance) {
         try{
 
-            URL url = new URL("http://127.0.0.1:5000/trainings/new");
+            URL url = new URL(urlStr);
             URLConnection con = url.openConnection();
             HttpURLConnection http = (HttpURLConnection)con;
             http.setRequestMethod("POST"); // PUT is another valid option
@@ -47,9 +48,7 @@ public class Requests {
             return points;
 
 
-        } catch (Exception e){
-            // do nothing :)
-        }
+        } catch (Exception e){}
         return 0;
     }
 
@@ -72,17 +71,14 @@ public class Requests {
         Requests r = new Requests();
         try{
             System.out.println(r.addTraining("http://127.0.0.1:5000/trainings/new",
-                    "nowy",
-                    "jumping",
-                    200,
-                    300,
-                    0
+                    "Mr.Trucker",
+                    "traking",
+                    1200,
+                    0,
+                    2000
                     ));
             System.out.println(getHTML("http://127.0.0.1:5000/mine"));
-
-        } catch (Exception e){
-
-        }
+        } catch (Exception e){ }
 
     }
 }

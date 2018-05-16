@@ -41,12 +41,12 @@ def mine():
 def new_transaction():
     values = request.get_json()
 
-    # Check that the required fields are in the POST'ed data
+    # Assuring that the required fields are in the POST'ed data
     required = ['user', 'training_type', 'training_time', 'reps', 'distance']
     if not all(value in values for value in required):
         return 'Missing values', 400
 
-    # Create a new training
+    # Create a new training from values given in POST method
     index = blockchain.add_training(values['user'],
                                     values['training_type'],
                                     values['reps'],
@@ -57,12 +57,7 @@ def new_transaction():
     # now we can calculate how many points user should get for accomplishing this training
     given_points = blockchain.calculate_points(values)
 
-    # response = {
-    #             'message': f'Training will be added to Block {index}',
-    #             'points': given_points
-    #             }
-    # return jsonify(response), 201
-    return str(given_points), 201
+    return str(given_points), 201  # return user's points and 201 code
 
 
 @node.route('/chain', methods=['GET'])

@@ -1,3 +1,5 @@
+package core;
+
 import SportPlanner.*;
 import java.util.Date;
 import java.text.DateFormat;
@@ -8,6 +10,9 @@ public class TrainingDay {
     private String date; // dd.mm.yyyy
     private FitnessTraining fitnessTraining;
     private DistanceTraining distanceTraining;
+
+    public TrainingDay() {
+    }
 
     public TrainingDay(String dateString) {
         // day with date only
@@ -39,7 +44,36 @@ public class TrainingDay {
         return date;
     }
 
-    public void setDate(String dateString) {
+    private void validateDateFormat(String dateString) throws IllegalArgumentException {
+        // dd.mm.yyyy
+        if(dateString.charAt(2) != '.' && dateString.charAt(5) != '.')
+            throw new IllegalArgumentException("Invalid date format. Supported date format is dd.mm.yyyy");
+
+        String day = "" + dateString.charAt(0) + dateString.charAt(1);
+        String month = "" + dateString.charAt(3) + dateString.charAt(4);
+        String year = "" + dateString.charAt(6) + dateString.charAt(7)
+                + dateString.charAt(8) + dateString.charAt(9);
+
+        int yearNumber = Integer.parseInt(year);
+        int dayNumber = Integer.parseInt(day);
+        int monthNumber = Integer.parseInt(month);
+
+        if (yearNumber < 2001 || yearNumber > 3000)
+            throw new IllegalArgumentException("you can't add trainings earlier than 2001 and later than 3000");
+        if ( dayNumber < 1 || dayNumber > 30)
+            throw new IllegalArgumentException("Invalid day. Supported date format is dd.mm.yyyy");
+        if ( monthNumber < 1 || monthNumber > 12)
+            throw new IllegalArgumentException("Invalid month. Supported date format is dd.mm.yyyy");
+
+    }
+
+    public void setDate(String dateString) throws IllegalArgumentException {
+        try{
+            validateDateFormat(dateString);
+        } catch (IllegalArgumentException e){
+            throw e;
+        }
+
         this.date = dateString;
     }
 
@@ -64,6 +98,7 @@ public class TrainingDay {
         Date newDate, date;
         formatter = new SimpleDateFormat("dd.mm.yyyy");
         try {
+            validateDateFormat(strDate);
             newDate = formatter.parse(strDate);
             date = formatter.parse(this.date);
             if (date.compareTo(newDate) == -1){

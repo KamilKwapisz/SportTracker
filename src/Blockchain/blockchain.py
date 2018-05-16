@@ -99,7 +99,8 @@ class Blockchain(object):
         :raise: 
         """
         parsed_url = urlparse(address)
-        self.nodes.add(parsed_url.netloc)
+        if parsed_url.netloc not in self.nodes:
+            self.nodes.append(parsed_url.netloc)
 
     def is_chain_valid(self, chain: list) -> bool:
         """
@@ -132,7 +133,7 @@ class Blockchain(object):
         method resolve conflict and decide whether chain is the authoritative or not
         :return: true if chain is authoritative
         """
-        neighbours: set = self.nodes
+        neighbours = self.nodes
         new_chain = None
 
         max_len = len(self.chain)
@@ -158,11 +159,12 @@ class Blockchain(object):
     def calculate_points(values: dict) -> float:
         """
         Method calculates how many points user should receive for one particular training
-        30 mins of training = 2 points (60 min = 4pts, 15 min  = 1pts so on and so forth
-        24 reps = 2 pts
-        1000 meters = 2 pts
-        :param values: dictionary that contains all training data. keys: user, training_type, reps, training_time, distance
-        :return: user's points(float)
+        this is how we calculate points number:
+        15 mins of training = 1 point (60 min = 4pts, 30 min  = 2pts so on and so forth
+        12 reps = 1 point
+        500 meters = 1 point
+        :param values: dictionary that contains all training data. dict keys: user, training_type, reps, training_time, distance
+        :return: points for one particular user's training (float))
         """
 
         points: float = 0

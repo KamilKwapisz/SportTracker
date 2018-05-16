@@ -1,3 +1,5 @@
+package core;
+
 import SportPlanner.*;
 import SportPlanner.DistanceTraining;
 

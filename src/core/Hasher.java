@@ -1,3 +1,4 @@
+package core;
 
 public class Hasher {
     public static String hash(String word){
@@ -10,6 +11,7 @@ public class Hasher {
         String word = "Hello World!";
         System.out.println("Word: " + word);
         word = hash(word);
-        System.out.println("Hashed word: " + word);
+        System.out.println("Hashed word: " + word + " len:" + word.length());
+
     }
 }
