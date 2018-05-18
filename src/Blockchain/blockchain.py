@@ -18,7 +18,7 @@ class Blockchain(object):
         Method creates new block 
         :param proof: int
         :param previous_hash: 
-        :return: 
+        :return: dict with created block
         """
         block: dict = {
             'index': len(self.chain) + 1,
@@ -28,7 +28,7 @@ class Blockchain(object):
             'previous_hash': previous_hash or self.hash(self.chain[-1]),
         }
 
-        # Reset the current list of transactions
+        # Reset the current list of trainings
         self.trainings = []
 
         self.chain.append(block)
@@ -99,7 +99,7 @@ class Blockchain(object):
         :raise: 
         """
         parsed_url = urlparse(address)
-        if parsed_url.netloc not in self.nodes:
+        if parsed_url.netloc not in self.nodes and parsed_url.netloc != '':
             self.nodes.append(parsed_url.netloc)
 
     def is_chain_valid(self, chain: list) -> bool:
@@ -113,9 +113,9 @@ class Blockchain(object):
 
         while current_index < len(chain):
             block = chain[current_index]
-            print(f'{last_block}')
-            print(f'{block}')
-            print("\n-----------\n")
+            # print(f'{last_block}')
+            # print(f'{block}')
+            # print("\n-----------\n")
             if block['previous_hash'] != self.hash(last_block):
                 return False
 
@@ -151,9 +151,9 @@ class Blockchain(object):
 
         if new_chain:
             self.chain = new_chain
-            return True
+            return False
 
-        return False
+        return True
 
     @staticmethod
     def calculate_points(values: dict) -> float:

@@ -9,7 +9,7 @@ public class TestTrainingDay {
         assertThatThrownBy(() -> td.setDate("12-12-2012"))
                 .as("testing lack of dots in date format")
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("Invalid date format. Supported date format is dd.mm.yyyy");
+                .hasMessage("Invalid date format. Supported date format is dd.MM.yyyy");
 
         assertThatThrownBy(() -> td.setDate("12.12.3012"))
                 .as("testing invalid year")
@@ -19,12 +19,12 @@ public class TestTrainingDay {
         assertThatThrownBy(() -> td.setDate("12.14.2012"))
                 .as("testing invalid month")
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("Invalid month. Supported date format is dd.mm.yyyy");
+                .hasMessage("Invalid month. Supported date format is dd.MM.yyyy");
 
         assertThatThrownBy(() -> td.setDate("00.12.2012"))
                 .as("testing invalid day")
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("Invalid day. Supported date format is dd.mm.yyyy");
+                .hasMessage("Invalid day. Supported date format is dd.MM.yyyy");
 
     }
 
@@ -44,7 +44,7 @@ public class TestTrainingDay {
         assertThatThrownBy(() -> td.isLater("12-12-2012"))
                 .as("testing lack of dots in date format in isLater")
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("Invalid date format. Supported date format is dd.mm.yyyy");
+                .hasMessage("Invalid date format. Supported date format is dd.MM.yyyy");
     }
 
     public static void main(String[] args) {

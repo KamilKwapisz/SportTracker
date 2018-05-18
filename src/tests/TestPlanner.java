@@ -41,9 +41,45 @@ public class TestPlanner {
                 .containsOnly("16.05.2018");
     }
 
+    private static void testGetDaysBetween(){
+
+        Planner planner = new Planner();
+
+        String date1 = "12.04.2018";
+        String date2 = "17.04.2018";
+
+        assertThat(planner.getDaysBetweenDates(date1, date2))
+                .as("testing list returned from getDaysBetween")
+                .hasSize(5)
+                .containsOnly("12.04.2018", "13.04.2018", "14.04.2018", "15.04.2018", "16.04.2018");
+
+        assertThat(planner.getDaysBetweenDates(date2, date1))
+                .as("testing list returned from getDaysBetween with days in the wrong order")
+                .isEmpty();
+
+        assertThatThrownBy(() -> planner.getDaysBetweenDates("13-12-2017", "14-12-2016"))
+                .as("checking exception raised when dates are in invalid format")
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Invalid date format. Supported date format is dd.MM.yyyy");
+
+        assertThatThrownBy(() -> planner.getDaysBetweenDates("12.17.2017", "13.18.2018"))
+                .as("checking exception raised when dates have invalid month")
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Invalid month. Supported date format is dd.MM.yyyy");
+
+        assertThatThrownBy(() -> planner.getDaysBetweenDates("00.11.2017", "33.11.2018"))
+                .as("checking exception raised when dates have invalid day")
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Invalid day. Supported date format is dd.MM.yyyy");
+
+    }
+
+
+
     public static void main(String[] args) {
         testAddingTrainingDays();
         testGetDay();
+        testGetDaysBetween();
     }
 
 }

@@ -2,6 +2,7 @@ package core;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class Planner {
@@ -46,33 +47,36 @@ public class Planner {
         return sb.toString();
     }
 
-    public static List<String> getDaysBetweenDates(String startDateString, String endDateString)
+    public static List<String> getDaysBetweenDates(String startDateString, String endDateString) throws IllegalArgumentException
     {
+        List<String> dates = new ArrayList<>();
         DateFormat formatter;
         Date startdate, enddate;
-        formatter = new SimpleDateFormat("dd.mm.yyyy");
+        TrainingDay td = new TrainingDay();
+        td.validateDateFormat(startDateString);
+        td.validateDateFormat(endDateString);
+        formatter = new SimpleDateFormat("dd.MM.yyyy");
 
         try {
             startdate = formatter.parse(startDateString);
             enddate = formatter.parse(endDateString);
-            List<String> dates = new ArrayList<>();
+
             Calendar calendar = new GregorianCalendar();
             calendar.setTime(startdate);
+            SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");
 
 
             while (calendar.getTime().before(enddate))
             {
                 Date result = calendar.getTime();
-                dates.add(result.toString());
+                dates.add(format1.format(result));
                 calendar.add(Calendar.DATE, 1);
             }
             return dates;
         } catch (java.text.ParseException e ) {
-            System.out.println("Blad");
+            return dates;
         }
-        List<String> dates = new ArrayList<>();
-        dates.add("blad");
-        return dates;
+
 
     }
 

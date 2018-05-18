@@ -44,10 +44,10 @@ public class TrainingDay {
         return date;
     }
 
-    private void validateDateFormat(String dateString) throws IllegalArgumentException {
-        // dd.mm.yyyy
+    public void validateDateFormat(String dateString) throws IllegalArgumentException {
+        // dd.MM.yyyy
         if(dateString.charAt(2) != '.' && dateString.charAt(5) != '.')
-            throw new IllegalArgumentException("Invalid date format. Supported date format is dd.mm.yyyy");
+            throw new IllegalArgumentException("Invalid date format. Supported date format is dd.MM.yyyy");
 
         String day = "" + dateString.charAt(0) + dateString.charAt(1);
         String month = "" + dateString.charAt(3) + dateString.charAt(4);
@@ -60,10 +60,10 @@ public class TrainingDay {
 
         if (yearNumber < 2001 || yearNumber > 3000)
             throw new IllegalArgumentException("you can't add trainings earlier than 2001 and later than 3000");
-        if ( dayNumber < 1 || dayNumber > 30)
-            throw new IllegalArgumentException("Invalid day. Supported date format is dd.mm.yyyy");
+        if ( dayNumber < 1 || dayNumber > 31)
+            throw new IllegalArgumentException("Invalid day. Supported date format is dd.MM.yyyy");
         if ( monthNumber < 1 || monthNumber > 12)
-            throw new IllegalArgumentException("Invalid month. Supported date format is dd.mm.yyyy");
+            throw new IllegalArgumentException("Invalid month. Supported date format is dd.MM.yyyy");
 
     }
 
