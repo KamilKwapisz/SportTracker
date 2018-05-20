@@ -50,12 +50,16 @@ public class TestUserInfo {
                 .hasMessage("Gender possibilities: female, male.");
     }
 
-
-    public static void main(String[] args) {
+    public void test(){
         testCalculateBMI();
         testHeightBoundaries();
         testWeightBoundaries();
         testSetSex();
+    }
+
+    public static void main(String[] args) {
+        TestUserInfo testUserInfo = new TestUserInfo();
+        testUserInfo.test();
     }
 
 }

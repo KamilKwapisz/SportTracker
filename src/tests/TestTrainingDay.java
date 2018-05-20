@@ -47,9 +47,14 @@ public class TestTrainingDay {
                 .hasMessage("Invalid date format. Supported date format is dd.MM.yyyy");
     }
 
-    public static void main(String[] args) {
+    public void test(){
         testSetDay();
         testIsLater();
+    }
+
+    public static void main(String[] args) {
+        TestTrainingDay testTrainingDay = new TestTrainingDay();
+        testTrainingDay.test();
     }
 
 }

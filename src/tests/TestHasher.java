@@ -24,8 +24,13 @@ public class TestHasher {
 
     }
 
-    public static void main(String[] args) {
+    public void test(){
         testHash();
+    }
+
+    public static void main(String[] args) {
+        TestHasher testHasher = new TestHasher();
+        testHasher.test();
     }
 
 }

@@ -92,7 +92,7 @@ class TestBlockchain(unittest.TestCase):
         self.blockchain.new_block(proof=213, previous_hash="33")
         self.blockchain.chain[0]['proof'] = 99999
 
-        self.assertFalse(self.blockchain.is_chain_valid(self.blockchain.chain), "validation on a invalid chain")
+        self.assertFalse(self.blockchain.is_chain_valid(self.blockchain.chain), "validation on an invalid chain")
 
 
 if __name__ == "__main__":

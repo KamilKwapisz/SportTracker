@@ -74,12 +74,16 @@ public class TestPlanner {
 
     }
 
-
-
-    public static void main(String[] args) {
+    public void test(){
         testAddingTrainingDays();
         testGetDay();
         testGetDaysBetween();
+    }
+
+
+    public static void main(String[] args) {
+        TestPlanner testPlanner = new TestPlanner();
+        testPlanner.test();
     }
 
 }
