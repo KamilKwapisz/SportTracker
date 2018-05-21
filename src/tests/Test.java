@@ -8,12 +8,13 @@ public class Test {
         TestSportBuilder testSportBuilder = new TestSportBuilder();
         TestTrainingDay testTrainingDay = new TestTrainingDay();
         TestUserInfo testUserInfo = new TestUserInfo();
+        TestSQLCommunication testSQL = new TestSQLCommunication();
 
         testHasher.test();
         testPlanner.test();
         testSportBuilder.test();
         testTrainingDay.test();
         testUserInfo.test();
+        testSQL.test();
     }
-
 }

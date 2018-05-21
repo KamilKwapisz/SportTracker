@@ -158,7 +158,7 @@ public class SQLCommunication {
         }
     }
 
-    private static String buildUpdateQuery(String... args ) {
+    public static String buildUpdateQuery(String... args ) {
         // Sample query: update users set age = 40, name = 'Janek' where login = 'janus' and height = 192
 
         try {
@@ -189,7 +189,7 @@ public class SQLCommunication {
         }
     }
 
-    private static String buildSelectQuery(String... args) {
+    public static String buildSelectQuery(String... args) {
         if (args.length < 2) {
             return null;
         }
@@ -207,7 +207,7 @@ public class SQLCommunication {
         return query;
     }
 
-    private static String buildSelectWhereQuery(String... args) {
+    public static String buildSelectWhereQuery(String... args) {
         if (args.length < 3) {
             return null;
         }
@@ -244,7 +244,7 @@ public class SQLCommunication {
         return query;
     }
 
-    private static String buildAddQuery(String... args) {
+    public static String buildAddQuery(String... args) {
         //addToTable( "fitnessTraining", "discipline", "squats", "400", "time","700","calories", "6969","favourite","0", "login","Janus", "date","010218");
 
         String query = ("insert into ");
@@ -266,7 +266,7 @@ public class SQLCommunication {
         return sb.toString();
     }
 
-    private static String buildDeleteQuery(String... args) {
+    public static String buildDeleteQuery(String... args) {
         // Sample query: delete from miasta where id_miasta ='4' and xyz = 'ABC'
 
         StringBuilder sb = new StringBuilder("delete from ");
@@ -278,7 +278,7 @@ public class SQLCommunication {
         return sb.toString();
     }
 
-    private static String[][] rsToStringMatrix(ResultSet rs) {
+    public static String[][] rsToStringMatrix(ResultSet rs) {
         try {
             if(!rs.next())
                 return null;
@@ -310,7 +310,7 @@ public class SQLCommunication {
         }
     }
 
-    private static void readConfigurationFile(String path) throws IOException {
+    public static void readConfigurationFile(String path) throws IOException {
         FileReader fr = new FileReader(new File(path));
         BufferedReader br = new BufferedReader(fr);
         String line;
@@ -345,7 +345,7 @@ public class SQLCommunication {
         }
     }
 
-    private static void printStringMatrix(String[][] matrix) {
+    public static void printStringMatrix(String[][] matrix) {
 
         try {
             if (matrix == null) {
