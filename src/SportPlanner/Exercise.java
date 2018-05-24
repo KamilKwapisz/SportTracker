@@ -12,6 +12,12 @@ public class Exercise {
         this.reps = exerciseBuilder.reps;
     }
 
+    public Exercise(String name, double time, int reps) {
+        setName(name);
+        setTime(time);
+        setReps(reps);
+    }
+
     public String getName() {
         return name;
     }
