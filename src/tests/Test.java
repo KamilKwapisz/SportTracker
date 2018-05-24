@@ -9,6 +9,9 @@ public class Test {
         TestTrainingDay testTrainingDay = new TestTrainingDay();
         TestUserInfo testUserInfo = new TestUserInfo();
         TestSQLCommunication testSQL = new TestSQLCommunication();
+        TestDistanceTraining testDistanceTraining = new TestDistanceTraining();
+        TestFitnessTraining testFitnessTraining = new TestFitnessTraining();
+        TestExercise testExercise = new TestExercise();
 
         testHasher.test();
         testPlanner.test();
@@ -16,5 +19,8 @@ public class Test {
         testTrainingDay.test();
         testUserInfo.test();
         testSQL.test();
+        testDistanceTraining.test();
+        testFitnessTraining.test();
+        testExercise.test();
     }
 }
